@@ -9,6 +9,14 @@ A self-contained, pink-and-blue party game website. Open `index.html` in a brows
 
 Use the game selector to switch games. Progress stays available while the page is open. Full-screen mode is available for a TV or projector.
 
+## Timer and leaderboard
+
+Each game has its own elapsed timer. It starts on the first game action, pauses when you switch games, and stops as soon as the last answer or piece is correct. Time spent entering your name does not count. Play again or Start over begins a fresh attempt.
+
+At the end, optionally enter your name and choose **Save my time**. Each game's leaderboard shows the top 10, with the **fastest completion time first**, measured to hundredths of a second. Solve all 20 words with Submit, or complete all 20 pictures, to qualify. Picture hints are allowed; word answers shown with Reveal do not count as correct submissions. Skipped rounds cannot earn a leaderboard place.
+
+Times are saved in this browser on this device and remain after a refresh. They are not shared between devices. If browser storage is unavailable, the leaderboard lasts only for the current tab. Saved results remain when the next player starts a new attempt.
+
 ## Publish with GitHub Pages
 
 1. Open this repository's **Settings → Pages**.

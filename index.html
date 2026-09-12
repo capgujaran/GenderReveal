@@ -63,6 +63,12 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
 @media(max-width:700px){.letter-bank-heading{font-size:7px;letter-spacing:1px;margin-bottom:12px;gap:7px}.letter-bank-heading span:last-child{font-size:8px}.letter-bank-heading .icon{width:11px;height:11px}#letters .word-bank-tile{width:clamp(38px,calc((100cqw - (var(--letters) - 1)*var(--tile-gap))/var(--letters)),49px);font-size:24px;aspect-ratio:1;min-height:47px}#letters{row-gap:8px}.word-answer-panel{margin-top:17px;margin-bottom:20px;padding:10px 0 12px;border-radius:15px}.word-answer-heading{padding:0 10px;margin-bottom:9px}.word-answer-heading>span{font-size:8px;letter-spacing:1.2px}.word-clear{font-size:9px;min-height:29px}.answer-slots{row-gap:8px;min-height:53px}.answer-slot{width:clamp(38px,calc((100cqw - (var(--letters) - 1)*var(--tile-gap))/var(--letters)),49px);aspect-ratio:1;min-height:47px;border-radius:9px;font-size:24px}.answer-slot .slot-number{font-size:10px}.word-submit-row{padding:0 10px;gap:10px;margin-top:13px}.word-feedback{font-size:9px;line-height:1.55}.word-submit{height:41px;min-width:105px;padding:0 12px;font-size:11px;border-radius:10px}.word-submit .icon{width:15px;height:15px}#scrambleGamePanel .clue-stage.has-clue{height:173px;margin-bottom:15px}.word-drag-ghost{font-size:27px;border-radius:9px}}
 @media(max-width:360px){#letters .word-bank-tile,.answer-slot{width:clamp(38px,calc((100cqw - (var(--letters) - 1)*var(--tile-gap))/var(--letters)),44px);font-size:22px}.word-submit{min-width:97px}.word-answer-heading{padding:0 8px}.word-submit-row{padding:0 8px}.letter-bank-heading span:last-child{font-size:7px}}
 
+  /* Elapsed timers and the finish-screen leaderboards. */
+.game-metrics{display:flex;align-items:stretch;justify-content:flex-end;gap:8px;flex:none}.timer-chip{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:86px;padding:8px 13px;border:1px solid #e4dfee;border-radius:13px;background:#fffafebf;color:#8b82a6;gap:4px}.timer-label{display:flex;align-items:center;gap:5px;font-size:8px;letter-spacing:1.7px;font-weight:750}.timer-label:before{content:'';width:5px;height:5px;border-radius:50%;background:#d8c8de}.timer-chip.running .timer-label:before{background:#77b7d4;box-shadow:0 0 0 3px #e3f2fa}.timer-value{font-variant-numeric:tabular-nums;font-size:18px;letter-spacing:1px;font-weight:750;line-height:1.15;color:#7875a0}.game-heading>div{min-width:0}.game-name{line-height:1.22}
+.results-panel{position:relative;max-width:740px;margin:21px auto 0;text-align:left;z-index:1}.result-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:428px;margin:0 auto 24px}.result-stat{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;border:1px solid #dce8f4;border-radius:15px;padding:14px 13px;background:#edf7ff88}.result-stat:last-child{border-color:#efd6e5;background:#fff0f788}.result-stat-label{font-size:8px;font-weight:750;letter-spacing:1.7px;color:#8c9bb6;text-transform:uppercase}.result-stat:last-child .result-stat-label{color:#b389a6}.result-stat strong{font-size:24px;font-weight:750;letter-spacing:.5px;color:#6588b0;font-variant-numeric:tabular-nums;line-height:1.1}.result-stat:last-child strong{color:#ad6f96}.result-columns{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.15fr);gap:20px;align-items:start}.result-entry{border:1px solid #e7e5f0;border-radius:18px;background:#ffffffc9;padding:20px}.result-entry h3,.leaderboard-heading h3{font:700 20px Georgia,serif;letter-spacing:-.5px;color:#737ba2;margin:0}.result-entry .entry-intro{font-size:11px;line-height:1.6;color:#8e99af;margin:8px 0 16px}.name-form label{display:block;font-size:10px;font-weight:650;color:#8493aa;margin:0 0 7px}.name-form input{width:100%;min-width:0;height:43px;border:1px solid #d6e0ed;border-radius:10px;background:#fcfdff;color:#536f93;padding:0 12px;font:13px 'Trebuchet MS',sans-serif;outline:none}.name-form input::placeholder{color:#b1baca}.name-form input:focus{border-color:#8aadd1;box-shadow:0 0 0 3px #daeafb88}.save-score{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:11px;min-height:42px;width:100%;border-radius:11px;border:1px solid #a84179;background:linear-gradient(135deg,#b84d89,#a53d79);color:white;font-size:12px;font-weight:700;box-shadow:0 3px 0 #943364}.save-score .icon{width:17px;height:17px}.save-score:disabled{opacity:.48;box-shadow:none;cursor:default}.result-entry .result-message{font-size:10px;line-height:1.6;color:#8b96ad;margin:12px 0 0}.result-entry .result-message[data-kind="error"]{color:#a13969}.result-entry .result-message[data-kind="success"]{color:#39745b}.leaderboard-card{border:1px solid #e0e6f1;background:#fff;border-radius:18px;overflow:hidden}.leaderboard-heading{padding:18px 17px 13px;background:linear-gradient(110deg,#f0f8ff,#fff4fa);border-bottom:1px solid #edf0f6}.leaderboard-heading h3{display:flex;align-items:center;gap:8px;font-size:20px}.leaderboard-heading .icon{color:#c5a568;width:20px;height:20px}.leaderboard-heading p{font-size:9px;line-height:1.5;color:#99a2b6;margin:6px 0 0}.leaderboard-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12px;color:#7c8da7}.leaderboard-table th{font-size:8px;text-transform:uppercase;letter-spacing:1.4px;font-weight:750;color:#98a5bb;padding:11px 12px;text-align:left;border-bottom:1px solid #edf0f6}.leaderboard-table th:first-child{width:44px}.leaderboard-table th:last-child{width:105px;text-align:right}.leaderboard-table td{padding:10px 12px;border-bottom:1px solid #f0f2f8;vertical-align:middle;overflow-wrap:anywhere}.leaderboard-table td:first-child{font-size:11px;color:#a4adc0;font-weight:750}.leaderboard-table td:last-child{white-space:nowrap;font-size:11px;font-variant-numeric:tabular-nums;color:#6f80a1;text-align:right}.leaderboard-table tr:first-child td:first-child{color:#b48d44}.leaderboard-table tr.current-entry,.leaderboard-table tr.highlight{background:#fbeefa}.leaderboard-table tr.current-entry td,.leaderboard-table tr.highlight td{color:#aa709b}.leaderboard-empty{padding:25px 17px!important;text-align:center;color:#9ba7bd!important;font-size:11px!important;line-height:1.6!important}.leaderboard-storage-note{font-size:9px!important;line-height:1.65!important;color:#9ca7ba!important;padding:12px 17px;margin:0!important;background:#fcfcff;border-top:1px solid #eef1f7}.completion.has-results{padding-top:24px;padding-bottom:28px}.completion.has-results .celebration-art{height:72px;width:98px;margin-bottom:9px}.completion.has-results .puzzle-finish-icon{height:70px;width:70px;margin:0 auto 18px;border-radius:22px}.completion.has-results .puzzle-finish-icon .icon{width:38px;height:38px}.completion.has-results h2{font-size:31px;margin:8px 0 10px}.completion.has-results>p{font-size:12px}.completion.has-results .completion-actions{margin-top:22px}.timing-note{display:block;margin-top:8px;color:#8898af}
+@media(max-width:700px){.game-metrics{gap:5px}.timer-chip{min-width:63px;padding:6px 8px;border-radius:11px;gap:3px}.timer-value{font-size:14px;letter-spacing:.4px}.timer-label{font-size:6px;letter-spacing:1.1px;gap:4px}.timer-label:before{width:4px;height:4px}.game-metrics .counter{min-width:62px;padding:6px 7px}.game-metrics .counter strong{font-size:15px}.card-header{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px}.game-heading{min-width:0;gap:8px}.game-heading .game-name{font-size:14px}.game-heading .game-kicker{font-size:6px;letter-spacing:1px;line-height:1.5}.game-heading .game-badge{width:31px;height:31px;flex:none}.game-heading .game-badge .icon{width:17px;height:17px}.results-panel{margin-top:18px}.result-stats{gap:8px;max-width:380px;margin-bottom:17px}.result-stat{padding:12px 8px;border-radius:12px;gap:7px}.result-stat-label{font-size:7px;letter-spacing:1.1px}.result-stat strong{font-size:21px}.result-columns{grid-template-columns:1fr;gap:16px}.result-entry{padding:17px;border-radius:15px}.result-entry h3{font-size:21px}.result-entry .entry-intro{font-size:10px;margin:7px 0 13px}.name-form input{height:44px;font-size:16px}.name-form label{font-size:10px}.save-score{min-height:43px;margin-top:10px}.leaderboard-card{border-radius:15px}.leaderboard-heading{padding:16px}.leaderboard-heading h3{font-size:21px}.leaderboard-table{font-size:12px}.leaderboard-table th{font-size:7px}.leaderboard-table th:last-child{width:108px}.leaderboard-table td{padding-top:12px;padding-bottom:12px}.completion.has-results{padding:23px 15px 25px}.completion.has-results h2{font-size:28px}.completion.has-results>p{font-size:11px}.completion.has-results .eyebrow{font-size:8px;letter-spacing:1.2px}.completion.has-results .action{min-width:133px;font-size:11px;height:44px}.completion.has-results .completion-actions{gap:9px}.leaderboard-storage-note{font-size:8px!important}}
+@media(max-width:360px){.timer-chip{min-width:57px;padding:6px}.game-metrics .counter{min-width:56px}.timer-value{font-size:13px}.game-heading .game-name{font-size:13px}.game-heading .game-badge{width:28px;height:28px}.game-heading{gap:6px}.game-heading .game-kicker{font-size:5.5px;letter-spacing:.65px}.result-stat strong{font-size:19px}.completion.has-results{padding-left:12px;padding-right:12px}.completion.has-results .action{min-width:122px;font-size:10px}}
+
   </style>
 </head>
 <body class="jigsaw-mode">
@@ -81,6 +87,7 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
     <symbol id="i-blocks" viewBox="0 0 24 24"><rect x="3" y="3" width="9" height="9" rx="2"/><rect x="12" y="12" width="9" height="9" rx="2"/><path d="m5 9 2.5-4L10 9M6 8h3m7 6v5m0-5h2a1.25 1.25 0 0 1 0 2.5h-2m2-0a1.25 1.25 0 0 1 0 2.5h-2"/></symbol>
     <symbol id="i-puzzle" viewBox="0 0 24 24"><path d="M4 4h5V3a3 3 0 0 1 6 0v1h5v5h-1a3 3 0 0 0 0 6h1v5h-5v-1a3 3 0 0 0-6 0v1H4v-5h1a3 3 0 0 0 0-6H4Z"/></symbol>
     <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 13V5a2 2 0 0 1 4 0v6l1-1a2 2 0 0 1 3 1 2 2 0 0 1 3 1c1-1 3 0 3 2v3c0 3-3 5-6 5h-3c-3 0-5-2-6-4l-3-5c-1-2 2-3 3-1l1 1"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 3h8v5c0 4-2 6-4 6s-4-2-4-6Zm0 2H4v2c0 3 2 4 5 4m7-6h4v2c0 3-2 4-5 4m-3 3v5m-4 2h8m-6-2h4"/></symbol>
     <symbol id="i-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></symbol>
     <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
     <symbol id="i-star" viewBox="0 0 48 48"><path d="M24 2c1.5 15 7 20.5 22 22-15 1.5-20.5 7-22 22C22.5 31 17 25.5 2 24 17 22.5 22.5 17 24 2Z" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
@@ -187,7 +194,7 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
       </div>
       <div id="scrambleGamePanel" hidden>
       <section class="game-card" aria-label="Baby word scramble game">
-        <div class="card-header"><div class="game-heading"><span class="game-badge" aria-hidden="true"><svg class="icon"><use href="#i-blocks"/></svg></span><div><p class="game-kicker">PARTY GAME 01</p><h2 class="game-name">Baby Word Scramble</h2></div></div><div class="counter" id="counter" aria-label="Word 1 of 20"><strong>01</strong> / 20</div></div>
+        <div class="card-header"><div class="game-heading"><span class="game-badge" aria-hidden="true"><svg class="icon"><use href="#i-blocks"/></svg></span><div><p class="game-kicker">PARTY GAME 01</p><h2 class="game-name">Baby Word Scramble</h2></div></div><div class="game-metrics"><div class="timer-chip" id="wordsTimerChip" aria-label="Elapsed time"><span class="timer-label">TIME</span><span class="timer-value" id="wordsTimer">00:00</span></div><div class="counter" id="counter" aria-label="Word 1 of 20"><strong>01</strong> / 20</div></div></div>
         <div class="progress-track" role="progressbar" id="progressTrack" aria-label="Position in game" aria-valuemin="1" aria-valuemax="20" aria-valuenow="1"><div class="progress-bar" id="progressBar"></div></div>
         <div id="playScreen">
           <div class="puzzle">
@@ -238,12 +245,20 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
             <span class="footer-note"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>Drag to arrange, or tap a letter then a box.</span>
           </div>
         </div>
-        <div id="completionScreen" class="completion" hidden>
+        <div id="completionScreen" class="completion has-results" hidden>
           <div class="confetti" id="confetti" aria-hidden="true"></div>
           <svg class="celebration-art" viewBox="0 0 180 140" aria-hidden="true"><path d="M53 74q-15 25 8 57m66-61q18 28-12 61" fill="none" stroke="#aaada3" stroke-width="1.5"/><ellipse cx="54" cy="44" rx="30" ry="37" fill="#f2b2d1" transform="rotate(-13 54 44)"/><ellipse cx="126" cy="41" rx="29" ry="36" fill="#b7def5" transform="rotate(15 126 41)"/><path d="m52 79 6-1-2 6Zm71-4 6 1-4 5Z" fill="#b5b5a7"/><path d="M39 24q-8 7-7 15m89-20q-10 2-11 13" stroke="#fff9ef" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M90 117 74 102c-10-10 4-21 16-9 12-12 26-1 16 9Z" fill="#d4b07c"/><path d="m11 64 2 7 7 2-7 2-2 7-2-7-7-2 7-2Zm154 23 2 7 7 2-7 2-2 7-2-7-7-2 7-2Z" fill="#cab488"/><circle cx="91" cy="16" r="3" fill="#d8bca3"/></svg>
           <div class="eyebrow">Game 01 complete</div>
-          <h2>Oh, baby. You did it!</h2>
-          <p>20 little words, a whole lot of love.<br>Boy or girl, the best surprise is yet to come!</p>
+          <h2>A round of applause!</h2>
+          <p>Your words, your time, your little moment to shine.</p>
+          
+      <div class="results-panel" id="wordsResultPanel" tabindex="-1" hidden>
+        <div class="result-stats"><div class="result-stat"><span class="result-stat-label">CORRECT WORDS</span><strong id="wordsResultScore">0</strong></div><div class="result-stat"><span class="result-stat-label">YOUR TIME</span><strong id="wordsResultTime">00:00.00</strong></div></div>
+        <div class="result-columns">
+          <section class="result-entry" aria-label="Save your time"><h3>Make it your moment.</h3><p class="entry-intro">Add your name and see where you finish.</p><form class="name-form" id="wordsNameForm"><label for="wordsPlayerName">Your name (optional)</label><input id="wordsPlayerName" name="playerName" type="text" maxlength="24" autocomplete="nickname" placeholder="Enter your name" aria-describedby="wordsResultMessage"><button type="submit" class="save-score" id="wordsSaveScore"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg><span id="wordsSaveLabel">Save my time</span></button></form><p class="result-message" id="wordsResultMessage" role="status" aria-live="polite"></p></section>
+          <section class="leaderboard-card" aria-label="Fastest completed games leaderboard"><div class="leaderboard-heading"><h3><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg>Fastest finishers</h3><p>Fastest completed games first · Top 10</p></div><table class="leaderboard-table"><caption class="sr-only">Leaderboard sorted by fastest completion time</caption><thead><tr><th scope="col">Rank</th><th scope="col">Player</th><th scope="col">Time</th></tr></thead><tbody id="wordsLeaderboardBody"></tbody></table><p class="leaderboard-empty" id="wordsLeaderboardEmpty">No times yet. Be the first!</p><p class="leaderboard-storage-note" id="wordsLeaderboardStorageNote">Saved on this device.</p></section>
+        </div>
+      </div>
           <div class="completion-actions"><button class="action hint-btn" id="reviewButton">Review the words</button><button class="action reveal-btn" id="playAgainButton"><svg class="icon"><use href="#i-restart"/></svg>Play again</button></div>
         </div>
       </section>
@@ -254,7 +269,7 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
   <div class="game-card jigsaw-card">
     <div class="card-header">
       <div class="game-heading"><span class="game-badge" aria-hidden="true"><svg class="icon"><use href="#i-puzzle"/></svg></span><div><p class="game-kicker">PARTY GAME 02 · SIX LITTLE PIECES</p><h2 class="game-name">Baby Picture Puzzles</h2></div></div>
-      <div class="counter jigsaw-counter" id="jigsawCounter" aria-label="Picture 1 of 20"><strong>01</strong> / 20</div>
+      <div class="game-metrics"><div class="timer-chip" id="jigsawTimerChip" aria-label="Elapsed time"><span class="timer-label">TIME</span><span class="timer-value" id="jigsawTimer">00:00</span></div><div class="counter jigsaw-counter" id="jigsawCounter" aria-label="Picture 1 of 20"><strong>01</strong> / 20</div></div>
     </div>
     <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="jigsawProgress"></div></div>
     <div id="jigsawPlay">
@@ -286,11 +301,19 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
         <button class="jigsaw-next" id="jigsawNext"><span id="jigsawNextLabel">Next picture</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
       </div>
     </div>
-    <div id="jigsawComplete" class="completion jigsaw-completion" hidden>
+    <div id="jigsawComplete" class="completion jigsaw-completion has-results" hidden>
       <div class="puzzle-finish-icon" aria-hidden="true"><svg class="icon"><use href="#i-puzzle"/></svg></div>
       <div class="eyebrow">SO MANY LITTLE HAPPY MOMENTS</div>
       <h2>A perfect little picture.</h2>
       <p id="jigsawSummary">20 pictures to bring together.</p>
+      
+      <div class="results-panel" id="jigsawResultPanel" tabindex="-1" hidden>
+        <div class="result-stats"><div class="result-stat"><span class="result-stat-label">PIECES PLACED</span><strong id="jigsawResultScore">0</strong></div><div class="result-stat"><span class="result-stat-label">YOUR TIME</span><strong id="jigsawResultTime">00:00.00</strong></div></div>
+        <div class="result-columns">
+          <section class="result-entry" aria-label="Save your time"><h3>Make it your moment.</h3><p class="entry-intro">Add your name and see where you finish.</p><form class="name-form" id="jigsawNameForm"><label for="jigsawPlayerName">Your name (optional)</label><input id="jigsawPlayerName" name="playerName" type="text" maxlength="24" autocomplete="nickname" placeholder="Enter your name" aria-describedby="jigsawResultMessage"><button type="submit" class="save-score" id="jigsawSaveScore"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg><span id="jigsawSaveLabel">Save my time</span></button></form><p class="result-message" id="jigsawResultMessage" role="status" aria-live="polite"></p></section>
+          <section class="leaderboard-card" aria-label="Fastest completed games leaderboard"><div class="leaderboard-heading"><h3><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg>Fastest finishers</h3><p>Fastest completed games first · Top 10</p></div><table class="leaderboard-table"><caption class="sr-only">Leaderboard sorted by fastest completion time</caption><thead><tr><th scope="col">Rank</th><th scope="col">Player</th><th scope="col">Time</th></tr></thead><tbody id="jigsawLeaderboardBody"></tbody></table><p class="leaderboard-empty" id="jigsawLeaderboardEmpty">No times yet. Be the first!</p><p class="leaderboard-storage-note" id="jigsawLeaderboardStorageNote">Saved on this device.</p></section>
+        </div>
+      </div>
       <div class="completion-actions"><button class="action hint-btn" id="jigsawContinue">Keep puzzling</button><button class="action reveal-btn" id="jigsawReplay"><svg class="icon" aria-hidden="true"><use href="#i-restart"/></svg>Play again</button></div>
     </div>
   </div>
@@ -301,7 +324,7 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
     </main>
     <footer class="page-footer"><span class="footer-love"><svg class="icon"><use href="#i-heart"/></svg>Team pink. Team blue. All love.</span><span class="keyboard-note" id="keyboardHints"><kbd>H</kbd> hint <kbd>R</kbd> reveal <kbd>→</kbd> next</span><button class="restart-btn" id="restartButton"><svg class="icon"><use href="#i-restart"/></svg>Start over</button></footer>
   </div>
-  <dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">Let’s play, baby.</h2><button class="close-btn" id="closeHelp" aria-label="Close instructions"><svg class="icon"><use href="#i-close"/></svg></button></div><ol class="instructions" id="wordInstructions"><li><strong>Build your answer.</strong> Drag letters from the scrambled row into the boxes below. Or tap a letter, then tap an answer box.</li><li><strong>Rearrange freely.</strong> Drag between answer boxes to swap letters. Drag a letter back up to remove it, or use Clear to start again.</li><li><strong>Check your guess.</strong> Tap Submit. A correct answer shows the word and picture; an incorrect answer lets you try again.</li><li><strong>Need a little help?</strong> Hint shows a picture. Reveal answer shows the word. Use Next word to continue through all 20.</li></ol><p class="help-note" id="wordHelpNote">Play at your own pace. Each letter can be used once, including repeated letters.<br>Use H for Hint, R for Reveal, and the arrow keys to move between words. Escape cancels a selected letter. Press F for full screen.</p><ol class="instructions" id="jigsawInstructions" hidden><li><strong>Choose a piece.</strong> The pieces are mixed up in the tray on the right. Swipe up or down, or use its arrow buttons to see more.</li><li><strong>Drag it left.</strong> Move a piece onto the big board. It snaps into place when you find the right spot.</li><li><strong>Or tap to place.</strong> Tap a piece to select it, then tap a space on the board. This works with a finger, mouse, or keyboard.</li><li><strong>Need help?</strong> Show picture adds a guide to the board. Put all six pieces together, then try the next picture!</li></ol><p class="help-note" id="jigsawHelpNote" hidden">There are 20 pictures. You can revisit any picture and keep the pieces you already placed. Reset starts the current picture again; Start over resets this game.<br>Use H for the picture guide, left/right arrows for pictures, and Escape to put down a selected piece. Press F for full screen.</p></dialog>
+  <dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">Let’s play, baby.</h2><button class="close-btn" id="closeHelp" aria-label="Close instructions"><svg class="icon"><use href="#i-close"/></svg></button></div><ol class="instructions" id="wordInstructions"><li><strong>Build your answer.</strong> Drag letters from the scrambled row into the boxes below. Or tap a letter, then tap an answer box.</li><li><strong>Rearrange freely.</strong> Drag between answer boxes to swap letters. Drag a letter back up to remove it, or use Clear to start again.</li><li><strong>Check your guess.</strong> Tap Submit. A correct answer shows the word and picture; an incorrect answer lets you try again.</li><li><strong>Need a little help?</strong> Hint shows a picture. Reveal answer shows the word. Use Next word to continue through all 20.</li></ol><p class="help-note" id="wordHelpNote">Play at your own pace. Each letter can be used once, including repeated letters.<br>Use H for Hint, R for Reveal, and the arrow keys to move between words. Escape cancels a selected letter. Press F for full screen.<span class="timing-note">The timer starts on your first action and pauses when you switch games. Submit all 20 words correctly to record a leaderboard time; revealed answers do not count. Fastest times appear first.</span></p><ol class="instructions" id="jigsawInstructions" hidden><li><strong>Choose a piece.</strong> The pieces are mixed up in the tray on the right. Swipe up or down, or use its arrow buttons to see more.</li><li><strong>Drag it left.</strong> Move a piece onto the big board. It snaps into place when you find the right spot.</li><li><strong>Or tap to place.</strong> Tap a piece to select it, then tap a space on the board. This works with a finger, mouse, or keyboard.</li><li><strong>Need help?</strong> Show picture adds a guide to the board. Put all six pieces together, then try the next picture!</li></ol><p class="help-note" id="jigsawHelpNote" hidden">There are 20 pictures. You can revisit any picture and keep the pieces you already placed. Reset starts the current picture again; Start over resets this game.<br>Use H for the picture guide, left/right arrows for pictures, and Escape to put down a selected piece. Press F for full screen.<span class="timing-note">The timer starts on your first action and pauses when you switch games. Complete all 20 pictures to record a leaderboard time. Fastest times appear first.</span></p></dialog>
   <div class="toast" id="toast" role="status" hidden></div>
   <div class="sr-only" id="announcer" role="status" aria-live="polite" aria-atomic="true"></div>
   <noscript><p style="padding:30px;text-align:center">Please enable JavaScript in your browser to play this game.</p></noscript>
@@ -593,6 +616,7 @@ const BABY_ART = {
     function icon(name) { return '<svg class="icon" aria-hidden="true"><use href="#i-'+name+'"/></svg>'; }
     function announce(message) { $('announcer').textContent = message; }
     function startGame() {
+      PartyResults.reset('words');
       WordArrange.cancelDrag();
       states = WORDS.map(word => ({scrambled:scramble(word),hint:false,revealed:false,arrangement:Array(word.length).fill(null),checked:false,submission:null}));
       index = 0; finished = false;
@@ -601,6 +625,8 @@ const BABY_ART = {
     }
     function render() {
       const current = states[index];
+      const correctWords = states.filter(state => state.checked).length;
+      if (finished || correctWords === WORDS.length) PartyResults.finish('words',{score:correctWords,maxScore:20,eligible:correctWords===20});
       $('playScreen').hidden = finished;
       $('completionScreen').hidden = !finished;
       $('counter').innerHTML = '<strong>' + (finished ? '20' : String(index + 1).padStart(2,'0')) + '</strong> / 20';
@@ -646,12 +672,14 @@ const BABY_ART = {
     }
     function hint() {
       if (finished || states[index].hint || states[index].revealed) return;
+      PartyResults.start('words');
       states[index].hint=true; render(); animateStage();
       announce('Picture hint shown. The written answer is still hidden.');
       $('revealButton').focus({preventScroll:true});
     }
     function reveal() {
       if (finished || states[index].revealed) return;
+      PartyResults.start('words');
       WordArrange.cancelDrag();
       states[index].revealed=true; states[index].hint=true; render(); animateStage();
       announce('The answer is '+WORDS[index]+'.');
@@ -659,18 +687,22 @@ const BABY_ART = {
     }
     function goTo(nextIndex) {
       if (nextIndex < 0 || nextIndex >= WORDS.length) return;
+      if (finished && states.some(state=>!state.checked)) PartyResults.reopen('words');
+      PartyResults.start('words');
       WordArrange.cancelDrag();
       index=nextIndex; finished=false; render(); animateStage();
       announce('Word '+(index+1)+' of 20. Scrambled letters: '+states[index].scrambled.split('').join(', ')+(states[index].revealed ? '. Answer: '+WORDS[index] : ''));
     }
     function next() {
       if (finished) return;
+      PartyResults.start('words');
       WordArrange.cancelDrag();
       if (index < WORDS.length - 1) goTo(index+1);
       else {
         finished=true; render(); celebrate();
         announce('Game complete. You reached the end of all 20 words.');
-        $('playAgainButton').focus({preventScroll:true});
+        $('wordsResultPanel').focus({preventScroll:true});
+        $('completionScreen').scrollIntoView?.({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
       }
     }
     function celebrate() {
@@ -1166,6 +1198,7 @@ const Jigsaw = (() => {
     }));
     const completed = states.filter(item => item.placed.length === 6).length;
     const totalPlaced = states.reduce((total, item) => total + item.placed.length, 0);
+    if (finished || totalPlaced===120) PartyResults.finish('jigsaw',{score:totalPlaced,maxScore:120,eligible:totalPlaced===120});
     $('jigsawSummary').textContent = completed === JIGSAW_SCENES.length
       ? 'You completed all 20 baby pictures — all 120 pieces!'
       : 'You completed ' + completed + ' of 20 pictures and placed ' + totalPlaced + ' of 120 pieces. You can return to any unfinished picture.';
@@ -1175,6 +1208,7 @@ const Jigsaw = (() => {
 
   function selectPiece(id) {
     if (finished || states[index].placed.includes(id)) return;
+    PartyResults.start('jigsaw');
     selected = selected === id ? null : id;
     updateSelection();
     setStatus(normalStatus());
@@ -1182,6 +1216,7 @@ const Jigsaw = (() => {
 
   function placePiece(id, slot, moveFocus = false) {
     if (finished || states[index].placed.includes(id)) return false;
+    PartyResults.start('jigsaw');
     if (slot !== id) {
       setStatus(slot === -1 ? 'Bring the piece onto the picture and try again.' : 'Almost! Try another space for this piece.');
       return false;
@@ -1246,6 +1281,7 @@ const Jigsaw = (() => {
     if (!source || finished || drag || !event.isPrimary || (event.pointerType === 'mouse' && event.button !== 0)) return;
     const id = Number(source.dataset.pieceId);
     if (states[index].placed.includes(id)) return;
+    PartyResults.start('jigsaw');
     drag = {
       id, source, pointerId: event.pointerId, pointerType: event.pointerType,
       startX: event.clientX, startY: event.clientY, lifted: false, scrolling: false, ghost: null
@@ -1297,6 +1333,7 @@ const Jigsaw = (() => {
 
   function togglePreview() {
     if (finished || !states.length || states[index].placed.length === 6) return;
+    PartyResults.start('jigsaw');
     cancelDrag();
     states[index].preview = !states[index].preview;
     render();
@@ -1305,6 +1342,8 @@ const Jigsaw = (() => {
 
   function goTo(nextIndex) {
     if (!Number.isInteger(nextIndex) || nextIndex < 0 || nextIndex >= JIGSAW_SCENES.length) return;
+    if (finished && states.some(state=>state.placed.length<6)) PartyResults.reopen('jigsaw');
+    PartyResults.start('jigsaw');
     cancelDrag();
     index = nextIndex;
     finished = false;
@@ -1316,6 +1355,7 @@ const Jigsaw = (() => {
 
   function next() {
     if (finished) return;
+    PartyResults.start('jigsaw');
     cancelDrag();
     if (index < JIGSAW_SCENES.length - 1) goTo(index + 1);
     else {
@@ -1323,8 +1363,8 @@ const Jigsaw = (() => {
       selected = null;
       render();
       announce($('jigsawSummary').textContent);
-      const target = $('jigsawContinue').hidden ? $('jigsawReplay') : $('jigsawContinue');
-      target.focus({ preventScroll: true });
+      $('jigsawResultPanel').focus({preventScroll:true});
+      $('jigsawComplete').scrollIntoView?.({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
     }
   }
 
@@ -1337,6 +1377,8 @@ const Jigsaw = (() => {
     if (finished) return;
     cancelDrag();
     states[index] = { placed: [], order: JigsawGeometry.shuffledIds(), preview: false };
+    PartyResults.reopen('jigsaw');
+    PartyResults.start('jigsaw');
     selected = null;
     $('pieceTray').scrollTop = 0;
     render();
@@ -1344,6 +1386,7 @@ const Jigsaw = (() => {
   }
 
   function resetAll() {
+    PartyResults.reset('jigsaw');
     cancelDrag();
     states = JIGSAW_SCENES.map(() => ({ placed: [], order: JigsawGeometry.shuffledIds(), preview: false }));
     index = 0;
@@ -1381,6 +1424,7 @@ const Jigsaw = (() => {
   function init() {
     if (initialized) return;
     initialized = true;
+    PartyResults.reset('jigsaw');
     states = JIGSAW_SCENES.map(() => ({ placed: [], order: JigsawGeometry.shuffledIds(), preview: false }));
     $('pieceTray').addEventListener('pointerdown', pointerDown);
     document.addEventListener('pointermove', pointerMove, { passive: false });
@@ -1577,6 +1621,7 @@ const WordArrange = (() => {
 
   function clear() {
     if (!interactive()) return;
+    PartyResults.start('words');
     cancelDrag();
     current().arrangement.fill(null);
     current().checked = false;
@@ -1588,6 +1633,7 @@ const WordArrange = (() => {
 
   function submit() {
     if (!interactive()) return;
+    PartyResults.start('words');
     cancelDrag();
     const state = current();
     if (state.arrangement.some(tokenId => tokenId === null)) {
@@ -1617,6 +1663,7 @@ const WordArrange = (() => {
   function onClick(event) {
     const button = buttonAt(event.target);
     if (!button || !interactive()) return;
+    PartyResults.start('words');
     if (event.detail !== 0 && now() < suppressClickUntil) { event.preventDefault(); return; }
     if (button.hasAttribute('data-answer-slot')) {
       const slot = Number(button.dataset.answerSlot);
@@ -1664,6 +1711,7 @@ const WordArrange = (() => {
     const fromSlot = isSlot ? Number(button.dataset.answerSlot) : -1;
     const tokenId = isSlot ? current().arrangement[fromSlot] : Number(button.dataset.tokenId);
     if (tokenId === null || (!isSlot && slotFor(tokenId) !== -1)) return;
+    PartyResults.start('words');
     drag = { pointerId: event.pointerId, tokenId, fromSlot, round: current(), button,
       startX: event.clientX, startY: event.clientY, active: false, ghost: null };
     try { button.setPointerCapture?.(event.pointerId); } catch { /* Document listeners still finish this gesture. */ }
@@ -1775,10 +1823,339 @@ const WordArrange = (() => {
 })();
 
 
+// Optional player names and fastest-completion leaderboards, saved on this device.
+const PartyResults = (() => {
+  const STORAGE_KEY = 'genderReveal.leaderboard.v1';
+  const games = ['words', 'jigsaw'];
+  const maximum = { words: 20, jigsaw: 120 };
+  const MAX_TIME = 365 * 24 * 60 * 60 * 1000;
+  let initialized = false;
+  let active = null;
+  let sequence = 0;
+  let entries = [];
+  let storageAvailable = true;
+
+  const byId = id => typeof document === 'undefined' ? null : document.getElementById(id);
+  const validGame = game => games.includes(game);
+  const clock = () => performance.now();
+  const quantize = ms => Math.max(0, Math.round(ms / 10) * 10);
+  const cleanName = value => typeof value === 'string'
+    ? Array.from(value.replace(/\s+/gu, ' ').trim()).slice(0, 24).join('').trim() : '';
+
+  function makeAttempt() {
+    sequence += 1;
+    const random = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+      ? crypto.randomUUID() : Math.random().toString(36).slice(2);
+    return {
+      id: Date.now().toString(36) + '-' + sequence + '-' + random,
+      elapsedMs: 0, since: null, started: false, running: false, finished: false,
+      result: null, bestTimeMs: null, nameDraft: '', notice: '', noticeKind: ''
+    };
+  }
+
+  const attempts = { words: makeAttempt(), jigsaw: makeAttempt() };
+
+  function elapsed(attempt) {
+    return attempt.elapsedMs + (attempt.running ? Math.max(0, clock() - attempt.since) : 0);
+  }
+
+  function formatTime(ms, precise = false) {
+    const safe = Number.isFinite(ms) && ms >= 0 ? ms : 0;
+    const centiseconds = precise ? Math.round(safe / 10) : Math.floor(safe / 10);
+    const seconds = Math.floor(centiseconds / 100);
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor(seconds / 60) % 60;
+    const secondsText = String(seconds % 60).padStart(2, '0');
+    const base = hours > 0
+      ? hours + ':' + String(minutes).padStart(2, '0') + ':' + secondsText
+      : String(minutes).padStart(2, '0') + ':' + secondsText;
+    return base + (precise ? '.' + String(centiseconds % 100).padStart(2, '0') : '');
+  }
+
+  function visibleGame() {
+    // This script can be declared before the host game's activeGame binding exists.
+    try {
+      if (typeof activeGame !== 'undefined' && validGame(activeGame)) return activeGame;
+    } catch (_) { /* The host's lexical binding has not initialized yet. */ }
+    return active;
+  }
+
+  function paintClock(game) {
+    const attempt = attempts[game];
+    const timer = byId(game + 'Timer');
+    const value = formatTime(elapsed(attempt));
+    if (timer && timer.textContent !== value) timer.textContent = value;
+    const chip = byId(game + 'TimerChip');
+    if (chip) chip.classList.toggle('running', attempt.running);
+  }
+
+  function pause(game) {
+    if (!validGame(game)) return;
+    const attempt = attempts[game];
+    if (attempt.running) {
+      attempt.elapsedMs = elapsed(attempt);
+      attempt.running = false;
+      attempt.since = null;
+    }
+    paintClock(game);
+  }
+
+  function start(game) {
+    if (!validGame(game) || (visibleGame() && visibleGame() !== game)) return;
+    const attempt = attempts[game];
+    if (attempt.finished || attempt.running) return;
+    games.filter(other => other !== game).forEach(pause);
+    active = game;
+    attempt.started = true;
+    attempt.running = true;
+    attempt.since = clock();
+    paintClock(game);
+  }
+
+  function activate(game) {
+    if (!validGame(game)) return;
+    games.filter(other => other !== game).forEach(pause);
+    active = game;
+    if (attempts[game].started && !attempts[game].finished) start(game);
+    refreshEntries();
+    render(game);
+  }
+
+  function reset(game) {
+    if (!validGame(game)) return;
+    pause(game);
+    attempts[game] = makeAttempt();
+    render(game);
+  }
+
+  function reopen(game) {
+    if (!validGame(game)) return;
+    const attempt = attempts[game];
+    attempt.finished = false;
+    attempt.result = null;
+    attempt.notice = '';
+    attempt.noticeKind = '';
+    if (attempt.started && visibleGame() === game) start(game);
+    render(game);
+  }
+
+  function finish(game, result = {}) {
+    if (!validGame(game)) return;
+    pause(game);
+    const attempt = attempts[game];
+    const maxScore = maximum[game];
+    const score = Number.isInteger(result.score) ? Math.max(0, Math.min(maxScore, result.score)) : 0;
+    const eligible = result.eligible === true && result.maxScore === maxScore && result.score === maxScore;
+    const timeMs = quantize(attempt.elapsedMs);
+    if (eligible) attempt.bestTimeMs = attempt.bestTimeMs === null ? timeMs : Math.min(attempt.bestTimeMs, timeMs);
+    attempt.finished = true;
+    attempt.result = {
+      score, maxScore, eligible,
+      timeMs: eligible ? attempt.bestTimeMs : timeMs
+    };
+    attempt.notice = '';
+    attempt.noticeKind = '';
+    refreshEntries();
+    render(game);
+  }
+
+  function validatedEntry(raw) {
+    if (!raw || typeof raw !== 'object' || !validGame(raw.game)) return null;
+    if (typeof raw.id !== 'string' || !raw.id || raw.id.length > 200) return null;
+    if (typeof raw.name !== 'string' || !cleanName(raw.name)) return null;
+    if (!Number.isFinite(raw.timeMs) || raw.timeMs < 0 || raw.timeMs > MAX_TIME) return null;
+    if (raw.score !== maximum[raw.game] || raw.maxScore !== maximum[raw.game]) return null;
+    if (!Number.isSafeInteger(raw.savedAt) || raw.savedAt < 0) return null;
+    return {
+      game: raw.game, id: raw.id, name: cleanName(raw.name), timeMs: quantize(raw.timeMs),
+      score: raw.score, maxScore: raw.maxScore, savedAt: raw.savedAt
+    };
+  }
+
+  function readEntries() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      if (!parsed || parsed.version !== 1 || !Array.isArray(parsed.entries)) return [];
+      return parsed.entries.map(validatedEntry).filter(Boolean);
+    } catch (error) {
+      // Invalid JSON is ignored; access failures still allow a leaderboard in this tab.
+      if (!(error instanceof SyntaxError)) storageAvailable = false;
+      return [];
+    }
+  }
+
+  function compare(a, b) {
+    return a.timeMs - b.timeMs || a.savedAt - b.savedAt || a.id.localeCompare(b.id);
+  }
+
+  function mergeEntries(...sources) {
+    const combined = new Map();
+    sources.flat().forEach(raw => {
+      const entry = validatedEntry(raw);
+      if (!entry) return;
+      const key = entry.game + ':' + entry.id;
+      const previous = combined.get(key);
+      if (!previous) combined.set(key, entry);
+      else {
+        const latest = entry.savedAt >= previous.savedAt ? entry : previous;
+        combined.set(key, { ...latest, timeMs: Math.min(previous.timeMs, entry.timeMs) });
+      }
+    });
+    // Retain the best 100 finishes per game, so the fastest results are never aged out.
+    return games.flatMap(game => [...combined.values()].filter(entry => entry.game === game).sort(compare).slice(0, 100));
+  }
+
+  function refreshEntries() {
+    entries = mergeEntries(entries, readEntries());
+  }
+
+  function currentEntry(game) {
+    return entries.find(entry => entry.game === game && entry.id === attempts[game].id);
+  }
+
+  function unchangedSave(game) {
+    const attempt = attempts[game];
+    const saved = currentEntry(game);
+    return !!(saved && attempt.result && saved.name === cleanName(attempt.nameDraft)
+      && saved.timeMs === Math.min(saved.timeMs, attempt.result.timeMs));
+  }
+
+  function save(game) {
+    const attempt = attempts[game];
+    if (!attempt.finished || !attempt.result || !attempt.result.eligible) return;
+    const input = byId(game + 'PlayerName');
+    attempt.nameDraft = input ? input.value : attempt.nameDraft;
+    const name = cleanName(attempt.nameDraft);
+    if (!name) {
+      attempt.notice = 'Enter your name to save your time, or play again without saving.';
+      attempt.noticeKind = 'error';
+      render(game);
+      if (input) input.focus();
+      return;
+    }
+    // Read immediately before writing so another tab's completed runs are preserved.
+    refreshEntries();
+    const previous = currentEntry(game);
+    const entry = {
+      game, id: attempt.id, name,
+      timeMs: previous ? Math.min(previous.timeMs, attempt.result.timeMs) : attempt.result.timeMs,
+      score: attempt.result.score, maxScore: attempt.result.maxScore,
+      savedAt: previous ? previous.savedAt : Date.now()
+    };
+    entries = mergeEntries(entries.filter(item => item.game !== game || item.id !== attempt.id), [entry]);
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: 1, entries }));
+      storageAvailable = true;
+    } catch (_) {
+      storageAvailable = false;
+    }
+    attempt.nameDraft = name;
+    const rank = entries.filter(item => item.game === game).sort(compare).findIndex(item => item.id === attempt.id) + 1;
+    attempt.notice = rank > 0 ? 'Time saved! You are #' + rank + ' for this game.'
+      : 'Your time is outside the fastest 100 saved runs. The leaderboard shows the top 10.';
+    attempt.noticeKind = rank > 0 ? 'success' : 'incomplete';
+    games.forEach(render);
+  }
+
+  function render(game) {
+    if (!validGame(game)) return;
+    const attempt = attempts[game];
+    const result = attempt.result;
+    paintClock(game);
+    const panel = byId(game + 'ResultPanel');
+    if (panel) panel.hidden = !attempt.finished;
+    const resultTime = byId(game + 'ResultTime');
+    if (resultTime) resultTime.textContent = formatTime(result ? result.timeMs : elapsed(attempt), true);
+    const score = byId(game + 'ResultScore');
+    if (score) score.textContent = (result ? result.score : 0) + ' / ' + maximum[game];
+    const input = byId(game + 'PlayerName');
+    if (input && input.value !== attempt.nameDraft) input.value = attempt.nameDraft;
+    const saved = unchangedSave(game);
+    const button = byId(game + 'SaveScore');
+    if (button) button.disabled = !result || !result.eligible || saved;
+    const label = byId(game + 'SaveLabel');
+    if (label) label.textContent = saved ? 'Saved' : currentEntry(game) ? 'Update name' : 'Save my time';
+    const message = byId(game + 'ResultMessage');
+    if (message) {
+      message.textContent = attempt.notice || (!result ? '' : !result.eligible
+        ? game === 'words'
+          ? 'Answer all 20 words correctly to join the leaderboard. Revealed answers do not count.'
+          : 'Place all 120 pieces across the 20 pictures to join the leaderboard.'
+        : saved ? 'Your time is on the leaderboard. Fastest completed games come first.'
+          : 'Add your name to join the leaderboard. Fastest completed games come first.');
+      message.dataset.kind = attempt.noticeKind || (result && !result.eligible ? 'incomplete' : '');
+    }
+    const body = byId(game + 'LeaderboardBody');
+    const leaders = entries.filter(entry => entry.game === game).sort(compare).slice(0, 10);
+    if (body) {
+      const rows = leaders.map((entry, index) => {
+        const row = document.createElement('tr');
+        row.className = entry.id === attempt.id ? 'current-entry' : '';
+        [String(index + 1), entry.name, formatTime(entry.timeMs, true)].forEach(value => {
+          const cell = document.createElement('td');
+          cell.textContent = value;
+          row.appendChild(cell);
+        });
+        return row;
+      });
+      body.replaceChildren(...rows);
+    }
+    const empty = byId(game + 'LeaderboardEmpty');
+    if (empty) empty.hidden = leaders.length > 0;
+    const note = byId(game + 'LeaderboardStorageNote');
+    if (note) note.textContent = storageAvailable
+      ? 'Saved on this device. Leaderboards are not shared between devices.'
+      : 'Saved for this tab only. Browser storage is unavailable.';
+  }
+
+  function init() {
+    if (initialized) return;
+    initialized = true;
+    refreshEntries();
+    games.forEach(game => {
+      const form = byId(game + 'NameForm');
+      if (form) form.addEventListener('submit', event => { event.preventDefault(); save(game); });
+      const input = byId(game + 'PlayerName');
+      if (input) input.addEventListener('input', () => {
+        attempts[game].nameDraft = input.value;
+        attempts[game].notice = '';
+        attempts[game].noticeKind = '';
+        render(game);
+      });
+      render(game);
+    });
+    setInterval(() => {
+      games.forEach(game => {
+        if (!attempts[game].running) return;
+        if (visibleGame() && visibleGame() !== game) pause(game);
+        else paintClock(game);
+      });
+    }, 250);
+    if (typeof window !== 'undefined') window.addEventListener('storage', event => {
+      if (event.key !== STORAGE_KEY && event.key !== null) return;
+      refreshEntries();
+      games.forEach(render);
+    });
+  }
+
+  function getState() {
+    return JSON.parse(JSON.stringify({
+      activeGame: active, storageAvailable, entries,
+      attempts: Object.fromEntries(games.map(game => [game, { ...attempts[game], elapsedMs: elapsed(attempts[game]) }]))
+    }));
+  }
+
+  return { init, reset, start, pause, activate, reopen, finish, render, getState, formatTime };
+})();
+
+
     function switchGame(game) {
       Jigsaw.cancelDrag();
       WordArrange.cancelDrag();
       activeGame = game === 'words' ? 'words' : 'jigsaw';
+      PartyResults.activate(activeGame);
       const isPuzzle = activeGame === 'jigsaw';
       $('scrambleGamePanel').hidden = isPuzzle;
       $('jigsawGamePanel').hidden = !isPuzzle;
@@ -1800,6 +2177,7 @@ const WordArrange = (() => {
     }
     $('gameWordsButton').addEventListener('click',()=>switchGame('words'));
     $('gameJigsawButton').addEventListener('click',()=>switchGame('jigsaw'));
+    PartyResults.init();
     startGame();
     WordArrange.init();
     Jigsaw.init();
