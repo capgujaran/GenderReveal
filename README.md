@@ -4,7 +4,7 @@ A self-contained, pink-and-blue party game website. Open `index.html` in a brows
 
 ## Games
 
-- **Baby Word Scramble:** 20 words with picture hints and answer reveals.
+- **Baby Word Scramble:** 20 words with draggable letters and an answer row. Drag letters down, rearrange them, and press Submit to check your answer. Tap-to-place, Clear, picture hints, and answer reveals are also available.
 - **Baby Picture Puzzles:** 20 illustrated scenes, each divided into six interlocking jigsaw pieces. Drag with a finger or mouse, or tap a piece and its matching space. The board and scrollable piece tray use a 75/25 layout.
 
 Use the game selector to switch games. Progress stays available while the page is open. Full-screen mode is available for a TV or projector.

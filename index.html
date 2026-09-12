@@ -51,6 +51,18 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
 @media(min-width:701px) and (max-height:850px){.jigsaw-mode .header{margin-bottom:12px;padding-top:8px;padding-bottom:8px}.jigsaw-mode .jigsaw-party-title{font-size:29px}.jigsaw-mode .game-switcher{margin-bottom:11px}.jigsaw-mode .nav-caption{margin-top:8px;margin-bottom:4px;font-size:7px}.jigsaw-mode .round-dot{height:24px}.jigsaw-mode .round-dot span{height:23px;width:23px;font-size:8px}.jigsaw-mode .page-footer{margin-top:4px;padding-bottom:5px}}
 @media(max-width:700px){.tray-scroll-button{height:34px}.piece-tray{top:35px;bottom:35px}.piece-number{font-size:6px;min-width:12px;height:12px;right:2px;bottom:2px;border-radius:4px}}
 
+  /* Arrange the shuffled letters directly into the answer row. */
+.letter-bank-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:790px;margin:0 auto 13px;font-size:9px;letter-spacing:1.5px;font-weight:750;color:#8d9bb3}.letter-bank-heading span:last-child{display:flex;align-items:center;gap:5px;text-transform:none;letter-spacing:0;font-size:10px;font-weight:500;color:#8f82a4}.letter-bank-heading .icon{width:13px;height:13px}
+#letters{flex-wrap:wrap}#letters .word-bank-tile{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:grab;font-family:inherit;flex-shrink:0;min-width:38px;min-height:48px;padding:0;transition:background .15s,opacity .15s,box-shadow .15s}#letters .word-bank-tile:not(:disabled):hover{transform:translateY(-2px);box-shadow:0 4px 9px #7e9bb228}#letters .word-bank-tile.used{opacity:.29;border-bottom-width:2px;box-shadow:none;background:#f0eef5;color:#8e91a4;cursor:default;transform:none}#letters .word-bank-tile.selected{outline:3px solid #bd82ad;outline-offset:3px}#letters .word-bank-tile:disabled{cursor:default}#letters .word-bank-tile.dragging,.answer-slot.dragging{opacity:.2}
+.word-answer-panel{max-width:814px;margin:19px auto 20px;padding:14px 12px 13px;border:1px solid #e1e8f4;border-radius:19px;background:linear-gradient(120deg,#f7fbff,#fff8fc);position:relative}.word-answer-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 2px;margin-bottom:12px}.word-answer-heading>span{font-size:9px;font-weight:750;letter-spacing:1.7px;color:#8096b5}.word-clear{display:inline-flex;align-items:center;justify-content:center;gap:5px;background:transparent;border:0;border-radius:7px;min-height:28px;padding:3px 6px;font-size:10px;color:#8d91aa}.word-clear .icon{width:12px;height:12px}.word-clear:disabled{opacity:.4}.answer-slots{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:var(--tile-gap);min-height:74px;position:relative}.answer-slot{width:clamp(38px,calc((100cqw - (var(--letters) - 1)*var(--tile-gap))/var(--letters)),66px);aspect-ratio:.92;min-height:48px;flex-shrink:0;border:2px dashed #c7d7e9;border-radius:12px;background:#ffffffb3;color:#627fa7;display:flex;align-items:center;justify-content:center;font-family:inherit;font-size:clamp(23px,5.3cqw,37px);font-weight:750;line-height:1;padding:0;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}.answer-slot .slot-number{font-size:12px;font-weight:500;color:#bac8da}.answer-slot.filled{background:linear-gradient(135deg,#f0f8ff,#e1eefb);border:1px solid #bbd4ec;border-bottom-width:4px;cursor:grab}.answer-slot.filled:nth-child(even){background:linear-gradient(135deg,#fff1f8,#fbe1ee);border-color:#e6bdd3;color:#ac5e8b}.answer-slot:not(:disabled):hover{transform:none;background:#eaf3fc}.answer-slot.selected{outline:3px solid #bd82ad;outline-offset:3px}.answer-slot.drop-target{background:#e4f1ff;outline:3px solid #81a9d4;outline-offset:2px}.answer-slots.solved .answer-slot{border-style:solid;border-color:#9bcdbd;background:#effbf6;color:#4e8b75;border-bottom-width:3px}.answer-slot:disabled{cursor:default}
+.word-submit-row{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:15px;padding:0 2px}.word-feedback{margin:0;text-align:left;color:#8797b0;font-size:11px;line-height:1.5;max-width:490px}.word-feedback.incomplete{color:#9e7742}.word-feedback.incorrect{color:#b75784}.word-feedback.correct{color:#427c67;font-weight:700}.word-submit{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #386f9f;border-radius:12px;background:linear-gradient(135deg,#3c77a9,#30699c);color:white;box-shadow:0 3px 0 #285981;font-size:13px;font-weight:750;min-width:133px;height:43px;padding:0 18px;flex-shrink:0}.word-submit .icon{width:17px;height:17px}.word-submit:not(:disabled):hover{background:#2c6393}.word-submit:disabled{opacity:.48;box-shadow:none}.word-drag-ghost{position:fixed;z-index:1100;pointer-events:none;display:flex;align-items:center;justify-content:center;border:1px solid #cbb0d3;border-bottom-width:4px;border-radius:12px;background:linear-gradient(135deg,#ffecf7,#e1efff);color:#6d70a2;font-family:'Trebuchet MS',sans-serif;font-weight:750;font-size:32px;box-shadow:0 9px 21px #5c6d9238;will-change:left,top}.word-is-dragging{user-select:none;-webkit-user-select:none}
+#scrambleGamePanel .clue-stage:not(.has-clue){display:none}#scrambleGamePanel .clue-stage.has-clue{margin-top:-5px;margin-bottom:12px}#scrambleGamePanel .puzzle-actions{padding-top:0}
+@media(min-width:701px){.word-arrange-mode .intro{display:none}.word-arrange-mode .header{position:relative;margin-bottom:17px}.word-arrange-mode .jigsaw-party-title{display:flex;align-items:center;gap:9px;position:absolute;left:50%;transform:translateX(-50%);font:bold 34px Georgia,serif;letter-spacing:-1.8px;white-space:nowrap;pointer-events:none}.word-arrange-mode .game-switcher{margin-bottom:16px}}
+@media(min-width:701px) and (max-width:950px){.word-arrange-mode .header-actions .quiet-btn{height:36px;min-height:36px;width:36px;padding:0}.word-arrange-mode .header-actions .btn-label{display:none}.word-arrange-mode .jigsaw-party-title{font-size:29px}}
+@media(min-width:701px) and (max-height:850px){.word-arrange-mode .header{padding-top:10px;padding-bottom:10px;margin-bottom:13px}.word-arrange-mode .game-switcher{margin-bottom:13px}.word-arrange-mode .game-tab{padding:8px 19px}.word-answer-panel{margin-top:16px;margin-bottom:17px;padding-top:9px;padding-bottom:12px}.word-answer-heading{margin-bottom:9px}.word-submit-row{margin-top:12px}.answer-slot{width:clamp(38px,calc((100cqw - (var(--letters) - 1)*var(--tile-gap))/var(--letters)),57px);font-size:32px}.answer-slots{min-height:65px}#scrambleGamePanel .clue-stage.has-clue{height:140px;margin-bottom:8px}#scrambleGamePanel .picture{height:100px}#scrambleGamePanel .revealed .picture{height:88px}#scrambleGamePanel .answer{font-size:24px}}
+@media(max-width:700px){.letter-bank-heading{font-size:7px;letter-spacing:1px;margin-bottom:12px;gap:7px}.letter-bank-heading span:last-child{font-size:8px}.letter-bank-heading .icon{width:11px;height:11px}#letters .word-bank-tile{width:clamp(38px,calc((100cqw - (var(--letters) - 1)*var(--tile-gap))/var(--letters)),49px);font-size:24px;aspect-ratio:1;min-height:47px}#letters{row-gap:8px}.word-answer-panel{margin-top:17px;margin-bottom:20px;padding:10px 0 12px;border-radius:15px}.word-answer-heading{padding:0 10px;margin-bottom:9px}.word-answer-heading>span{font-size:8px;letter-spacing:1.2px}.word-clear{font-size:9px;min-height:29px}.answer-slots{row-gap:8px;min-height:53px}.answer-slot{width:clamp(38px,calc((100cqw - (var(--letters) - 1)*var(--tile-gap))/var(--letters)),49px);aspect-ratio:1;min-height:47px;border-radius:9px;font-size:24px}.answer-slot .slot-number{font-size:10px}.word-submit-row{padding:0 10px;gap:10px;margin-top:13px}.word-feedback{font-size:9px;line-height:1.55}.word-submit{height:41px;min-width:105px;padding:0 12px;font-size:11px;border-radius:10px}.word-submit .icon{width:15px;height:15px}#scrambleGamePanel .clue-stage.has-clue{height:173px;margin-bottom:15px}.word-drag-ghost{font-size:27px;border-radius:9px}}
+@media(max-width:360px){#letters .word-bank-tile,.answer-slot{width:clamp(38px,calc((100cqw - (var(--letters) - 1)*var(--tile-gap))/var(--letters)),44px);font-size:22px}.word-submit{min-width:97px}.word-answer-heading{padding:0 8px}.word-submit-row{padding:0 8px}.letter-bank-heading span:last-child{font-size:7px}}
+
   </style>
 </head>
 <body class="jigsaw-mode">
@@ -170,7 +182,7 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
 </g></svg></div>
       </section>
       <div class="game-switcher" role="group" aria-label="Choose a party game">
-        <button id="gameWordsButton" class="game-tab" aria-pressed="false" aria-controls="scrambleGamePanel"><span class="game-tab-number">01</span><span class="game-tab-copy"><strong>Baby Word Scramble</strong><small>20 words · Guess &amp; reveal</small></span></button>
+        <button id="gameWordsButton" class="game-tab" aria-pressed="false" aria-controls="scrambleGamePanel"><span class="game-tab-number">01</span><span class="game-tab-copy"><strong>Baby Word Scramble</strong><small>20 words · Arrange &amp; check</small></span></button>
         <button id="gameJigsawButton" class="game-tab selected" aria-pressed="true" aria-controls="jigsawGamePanel"><span class="game-tab-number">02</span><span class="game-tab-copy"><strong>Baby Picture Puzzles</strong><small>20 pictures · Drag &amp; play</small></span></button>
       </div>
       <div id="scrambleGamePanel" hidden>
@@ -180,7 +192,13 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
         <div id="playScreen">
           <div class="puzzle">
             <p class="prompt">What baby word is hiding in these letters?</p>
+            <div class="letter-bank-heading"><span>SCRAMBLED LETTERS</span><span>Drag letters down <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></span></div>
             <div class="letter-wrap" id="letterWrap"><div class="letters" id="letters" role="group" aria-label="Scrambled letters"></div></div>
+            <div class="word-answer-panel" id="wordAnswerPanel">
+              <div class="word-answer-heading"><span>YOUR ANSWER</span><button class="word-clear" id="clearWordButton" aria-label="Clear your answer"><svg class="icon" aria-hidden="true"><use href="#i-restart"/></svg>Clear</button></div>
+              <div class="letter-wrap" id="answerWrap"><div class="answer-slots" id="answerSlots" role="group" aria-label="Arrange your answer here"></div></div>
+              <div class="word-submit-row"><p class="word-feedback" id="wordFeedback" role="status" aria-live="polite">Arrange the letters, then press Submit.</p><button class="word-submit" id="submitWordButton"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-word-submit-label>Submit</span></button></div>
+            </div>
             <div class="clue-stage" id="clueStage">
               <div id="mystery"><div class="mystery" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 125" fill="none" aria-hidden="true">
 <ellipse cx="77" cy="114" rx="49" ry="5" fill="#e2e7ef" opacity=".5"/>
@@ -217,7 +235,7 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
           </div>
           <div class="card-footer">
             <button class="previous-btn" id="previousButton" disabled><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg>Previous word</button>
-            <span class="footer-note"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>Guess out loud, then reveal!</span>
+            <span class="footer-note"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>Drag to arrange, or tap a letter then a box.</span>
           </div>
         </div>
         <div id="completionScreen" class="completion" hidden>
@@ -283,7 +301,7 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
     </main>
     <footer class="page-footer"><span class="footer-love"><svg class="icon"><use href="#i-heart"/></svg>Team pink. Team blue. All love.</span><span class="keyboard-note" id="keyboardHints"><kbd>H</kbd> hint <kbd>R</kbd> reveal <kbd>→</kbd> next</span><button class="restart-btn" id="restartButton"><svg class="icon"><use href="#i-restart"/></svg>Start over</button></footer>
   </div>
-  <dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">Let’s play, baby.</h2><button class="close-btn" id="closeHelp" aria-label="Close instructions"><svg class="icon"><use href="#i-close"/></svg></button></div><ol class="instructions" id="wordInstructions"><li><strong>Guess together.</strong> Rearrange the letters to find a baby-related word. Call out your guesses!</li><li><strong>Need a clue?</strong> Tap Hint to see a picture, without the written answer.</li><li><strong>Ready?</strong> Tap Reveal answer to see the word and its picture.</li><li><strong>Keep going.</strong> Tap Next word. There are 20 words to enjoy.</li></ol><p class="help-note" id="wordHelpNote">No timer, no typing — just play at your own pace.<br>Use H for Hint, R for Reveal, and the arrow keys to move between words. Press F for full screen.</p><ol class="instructions" id="jigsawInstructions" hidden><li><strong>Choose a piece.</strong> The pieces are mixed up in the tray on the right. Swipe up or down, or use its arrow buttons to see more.</li><li><strong>Drag it left.</strong> Move a piece onto the big board. It snaps into place when you find the right spot.</li><li><strong>Or tap to place.</strong> Tap a piece to select it, then tap a space on the board. This works with a finger, mouse, or keyboard.</li><li><strong>Need help?</strong> Show picture adds a guide to the board. Put all six pieces together, then try the next picture!</li></ol><p class="help-note" id="jigsawHelpNote" hidden">There are 20 pictures. You can revisit any picture and keep the pieces you already placed. Reset starts the current picture again; Start over resets this game.<br>Use H for the picture guide, left/right arrows for pictures, and Escape to put down a selected piece. Press F for full screen.</p></dialog>
+  <dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">Let’s play, baby.</h2><button class="close-btn" id="closeHelp" aria-label="Close instructions"><svg class="icon"><use href="#i-close"/></svg></button></div><ol class="instructions" id="wordInstructions"><li><strong>Build your answer.</strong> Drag letters from the scrambled row into the boxes below. Or tap a letter, then tap an answer box.</li><li><strong>Rearrange freely.</strong> Drag between answer boxes to swap letters. Drag a letter back up to remove it, or use Clear to start again.</li><li><strong>Check your guess.</strong> Tap Submit. A correct answer shows the word and picture; an incorrect answer lets you try again.</li><li><strong>Need a little help?</strong> Hint shows a picture. Reveal answer shows the word. Use Next word to continue through all 20.</li></ol><p class="help-note" id="wordHelpNote">Play at your own pace. Each letter can be used once, including repeated letters.<br>Use H for Hint, R for Reveal, and the arrow keys to move between words. Escape cancels a selected letter. Press F for full screen.</p><ol class="instructions" id="jigsawInstructions" hidden><li><strong>Choose a piece.</strong> The pieces are mixed up in the tray on the right. Swipe up or down, or use its arrow buttons to see more.</li><li><strong>Drag it left.</strong> Move a piece onto the big board. It snaps into place when you find the right spot.</li><li><strong>Or tap to place.</strong> Tap a piece to select it, then tap a space on the board. This works with a finger, mouse, or keyboard.</li><li><strong>Need help?</strong> Show picture adds a guide to the board. Put all six pieces together, then try the next picture!</li></ol><p class="help-note" id="jigsawHelpNote" hidden">There are 20 pictures. You can revisit any picture and keep the pieces you already placed. Reset starts the current picture again; Start over resets this game.<br>Use H for the picture guide, left/right arrows for pictures, and Escape to put down a selected piece. Press F for full screen.</p></dialog>
   <div class="toast" id="toast" role="status" hidden></div>
   <div class="sr-only" id="announcer" role="status" aria-live="polite" aria-atomic="true"></div>
   <noscript><p style="padding:30px;text-align:center">Please enable JavaScript in your browser to play this game.</p></noscript>
@@ -575,7 +593,8 @@ const BABY_ART = {
     function icon(name) { return '<svg class="icon" aria-hidden="true"><use href="#i-'+name+'"/></svg>'; }
     function announce(message) { $('announcer').textContent = message; }
     function startGame() {
-      states = WORDS.map(word => ({scrambled:scramble(word),hint:false,revealed:false}));
+      WordArrange.cancelDrag();
+      states = WORDS.map(word => ({scrambled:scramble(word),hint:false,revealed:false,arrangement:Array(word.length).fill(null),checked:false,submission:null}));
       index = 0; finished = false;
       render();
       announce('New game. Word 1 of 20. Scrambled letters: ' + states[0].scrambled.split('').join(', '));
@@ -588,12 +607,8 @@ const BABY_ART = {
       $('counter').setAttribute('aria-label', finished ? 'All 20 words completed' : 'Word ' + (index + 1) + ' of 20');
       $('progressBar').style.width = ((finished ? WORDS.length : index + 1) / WORDS.length * 100) + '%';
       $('progressTrack').setAttribute('aria-valuenow',finished ? 20 : index + 1);
-      $('letterWrap').style.setProperty('--letters',WORDS[index].length);
-      $('letters').replaceChildren(...[...current.scrambled].map(letter => {
-        const tile = document.createElement('span');
-        tile.className = 'tile'; tile.textContent = letter; tile.setAttribute('aria-hidden','true'); return tile;
-      }));
-      $('letters').setAttribute('aria-label','Scrambled letters: ' + current.scrambled.split('').join(', '));
+      $('wordAnswerPanel').style.setProperty('--letters',WORDS[index].length);
+      WordArrange.render();
       $('mystery').hidden = current.hint || current.revealed;
       $('picture').hidden = !current.hint && !current.revealed;
       $('pictureLabel').hidden = !current.hint && !current.revealed;
@@ -604,6 +619,7 @@ const BABY_ART = {
       if (artwork) { artwork.setAttribute('role','img'); artwork.setAttribute('aria-label',current.revealed ? 'Illustration of ' + WORDS[index].toLowerCase() : 'Picture clue for this baby word'); }
       $('pictureLabel').textContent = current.revealed ? 'The answer is' : 'Picture hint';
       $('clueStage').classList.toggle('revealed',current.revealed);
+      $('clueStage').classList.toggle('has-clue',current.hint || current.revealed);
       $('hintButton').disabled = current.hint || current.revealed;
       $('hintLabel').textContent = current.hint || current.revealed ? 'Hint shown' : 'Hint';
       $('revealButton').disabled = current.revealed;
@@ -636,17 +652,20 @@ const BABY_ART = {
     }
     function reveal() {
       if (finished || states[index].revealed) return;
+      WordArrange.cancelDrag();
       states[index].revealed=true; states[index].hint=true; render(); animateStage();
       announce('The answer is '+WORDS[index]+'.');
       $('nextButton').focus({preventScroll:true});
     }
     function goTo(nextIndex) {
       if (nextIndex < 0 || nextIndex >= WORDS.length) return;
+      WordArrange.cancelDrag();
       index=nextIndex; finished=false; render(); animateStage();
       announce('Word '+(index+1)+' of 20. Scrambled letters: '+states[index].scrambled.split('').join(', ')+(states[index].revealed ? '. Answer: '+WORDS[index] : ''));
     }
     function next() {
       if (finished) return;
+      WordArrange.cancelDrag();
       if (index < WORDS.length - 1) goTo(index+1);
       else {
         finished=true; render(); celebrate();
@@ -700,6 +719,7 @@ const BABY_ART = {
         else Jigsaw.handleKey(event);
         return;
       }
+      if (WordArrange.handleKey(event)) return;
       switch(event.key.toLowerCase()){
         case 'h': event.preventDefault(); hint(); break;
         case 'r': event.preventDefault(); reveal(); break;
@@ -1413,13 +1433,357 @@ const Jigsaw = (() => {
 })();
 
 
+    // Game 01 letter tiles: drag with a mouse or finger, or select and place by tap.
+const WordArrange = (() => {
+  let initialized = false;
+  let selected = null;
+  let drag = null;
+  let renderedRound = null;
+  let suppressClickUntil = 0;
+
+  const current = () => states[index];
+  const locked = () => !current() || finished || current().revealed || current().checked;
+  const interactive = () => activeGame === 'words' && !locked();
+  const letterFor = tokenId => current().scrambled[tokenId];
+  const slotFor = tokenId => current().arrangement.indexOf(tokenId);
+  const now = () => performance.now();
+
+  function feedback() {
+    const state = current();
+    if (state.checked) return 'You got it! A little bundle of brilliance.';
+    if (state.revealed) return 'Answer revealed. Try the next word.';
+    if (state.submission === 'incomplete') {
+      const missing = state.arrangement.filter(token => token === null).length;
+      return 'Add ' + missing + ' more ' + (missing === 1 ? 'letter' : 'letters') + ', then press Submit.';
+    }
+    if (state.submission === 'incorrect') return 'Not quite. Rearrange the letters and try again.';
+    return 'Arrange the letters, then press Submit.';
+  }
+
+  function paintSelection() {
+    if (!$('letters') || !$('answerSlots') || !current()) return;
+    $('letters').querySelectorAll('[data-token-id]').forEach(button => {
+      const tokenId = Number(button.dataset.tokenId);
+      const isSelected = !!selected && selected.tokenId === tokenId && selected.fromSlot === -1;
+      const isUsed = slotFor(tokenId) !== -1;
+      button.classList.toggle('selected', isSelected);
+      button.setAttribute('aria-pressed', String(isSelected));
+      button.setAttribute('aria-label', isUsed
+        ? (selected && selected.tokenId === tokenId ? 'Return ' + letterFor(tokenId) + ' here' : letterFor(tokenId) + ', already in your answer')
+        : letterFor(tokenId) + (isSelected ? ', selected. Choose an answer box' : ', select or drag into your answer'));
+    });
+    $('answerSlots').querySelectorAll('[data-answer-slot]').forEach(button => {
+      const slot = Number(button.dataset.answerSlot);
+      const isSelected = !!selected && selected.fromSlot === slot;
+      button.classList.toggle('selected', isSelected);
+      button.setAttribute('aria-pressed', String(isSelected));
+    });
+    $('answerSlots').classList.toggle('has-selection', selected !== null);
+  }
+
+  function render() {
+    if (!current() || !$('answerSlots')) return;
+    if (renderedRound !== current()) {
+      cancelDrag();
+      renderedRound = current();
+    }
+    if (drag) cancelDrag();
+    const state = current();
+    if (locked()) selected = null;
+    if (selected && slotFor(selected.tokenId) !== selected.fromSlot) selected = null;
+    const disabled = locked();
+    $('letterWrap').style.setProperty('--letters', state.scrambled.length);
+    $('answerSlots').style.setProperty('--letters', state.scrambled.length);
+    $('letters').replaceChildren(...[...state.scrambled].map((letter, tokenId) => {
+      const tile = document.createElement('button');
+      tile.type = 'button';
+      tile.className = 'tile word-bank-tile' + (slotFor(tokenId) !== -1 ? ' used' : '');
+      tile.dataset.tokenId = tokenId;
+      tile.textContent = letter;
+      tile.disabled = disabled;
+      tile.draggable = false;
+      return tile;
+    }));
+    $('letters').setAttribute('aria-label', 'Scrambled letters. Select or drag a letter to an answer box.');
+    $('answerSlots').replaceChildren(...state.arrangement.map((tokenId, slot) => {
+      const tile = document.createElement('button');
+      tile.type = 'button';
+      tile.className = 'answer-slot' + (tokenId !== null ? ' filled' : '');
+      tile.dataset.answerSlot = slot;
+      tile.disabled = disabled;
+      tile.draggable = false;
+      if (tokenId === null) {
+        const number = document.createElement('span');
+        number.className = 'slot-number';
+        number.textContent = slot + 1;
+        number.setAttribute('aria-hidden', 'true');
+        tile.append(number);
+      } else tile.textContent = letterFor(tokenId);
+      tile.setAttribute('aria-label', 'Answer box ' + (slot + 1) + ' of ' + state.arrangement.length +
+        (tokenId === null ? ', empty' : ', ' + letterFor(tokenId) + '. Select or drag to rearrange'));
+      return tile;
+    }));
+    $('answerSlots').classList.toggle('solved', !!state.checked);
+    $('answerSlots').setAttribute('aria-label', 'Your answer, ' + state.arrangement.length + ' letter boxes');
+    $('submitWordButton').disabled = disabled;
+    $('clearWordButton').disabled = disabled || !state.arrangement.some(token => token !== null);
+    const status = $('wordFeedback');
+    status.textContent = feedback();
+    status.classList.toggle('correct', !!state.checked);
+    status.classList.toggle('incorrect', state.submission === 'incorrect' && !state.revealed);
+    status.classList.toggle('incomplete', state.submission === 'incomplete' && !state.revealed);
+    paintSelection();
+  }
+
+  function choose(tokenId, fromSlot) {
+    if (selected && selected.tokenId === tokenId && selected.fromSlot === fromSlot) {
+      selected = null;
+      announce('Letter deselected.');
+    } else {
+      selected = { tokenId, fromSlot };
+      announce(letterFor(tokenId) + ' selected. Choose an answer box' + (fromSlot !== -1 ? ', or its faded letter above to return it' : '') + '.');
+    }
+    paintSelection();
+  }
+
+  function place(tokenId, targetSlot) {
+    if (!interactive() || !Number.isInteger(targetSlot) || targetSlot < 0 || targetSlot >= current().arrangement.length) return false;
+    const state = current();
+    const origin = slotFor(tokenId);
+    if (origin === targetSlot) { selected = null; paintSelection(); return false; }
+    const displaced = state.arrangement[targetSlot];
+    if (origin !== -1) state.arrangement[origin] = displaced;
+    state.arrangement[targetSlot] = tokenId;
+    state.submission = null;
+    selected = null;
+    render();
+    announce(letterFor(tokenId) + ' placed in answer box ' + (targetSlot + 1) + '.');
+    $('answerSlots').querySelector('[data-answer-slot="' + targetSlot + '"]')?.focus({ preventScroll: true });
+    return true;
+  }
+
+  function returnToBank(tokenId) {
+    if (!interactive()) return false;
+    const origin = slotFor(tokenId);
+    selected = null;
+    if (origin === -1) { paintSelection(); return false; }
+    current().arrangement[origin] = null;
+    current().submission = null;
+    render();
+    announce(letterFor(tokenId) + ' returned to the scrambled letters.');
+    $('letters').querySelector('[data-token-id="' + tokenId + '"]')?.focus({ preventScroll: true });
+    return true;
+  }
+
+  function clear() {
+    if (!interactive()) return;
+    cancelDrag();
+    current().arrangement.fill(null);
+    current().checked = false;
+    current().submission = null;
+    render();
+    announce('Answer cleared. Arrange the letters and try again.');
+    $('letters').querySelector('[data-token-id]')?.focus({ preventScroll: true });
+  }
+
+  function submit() {
+    if (!interactive()) return;
+    cancelDrag();
+    const state = current();
+    if (state.arrangement.some(tokenId => tokenId === null)) {
+      state.submission = 'incomplete';
+      render();
+      announce(feedback());
+      return;
+    }
+    if (state.arrangement.map(tokenId => state.scrambled[tokenId]).join('') !== WORDS[index]) {
+      state.submission = 'incorrect';
+      render();
+      announce(feedback());
+      return;
+    }
+    state.checked = true;
+    state.submission = 'correct';
+    reveal();
+    announce('Correct! The answer is ' + WORDS[index] + '.');
+  }
+
+  function buttonAt(target) {
+    if (!target || !target.closest) return null;
+    const button = target.closest('[data-answer-slot], [data-token-id]');
+    return button && ($('letters').contains(button) || $('answerSlots').contains(button)) ? button : null;
+  }
+
+  function onClick(event) {
+    const button = buttonAt(event.target);
+    if (!button || !interactive()) return;
+    if (event.detail !== 0 && now() < suppressClickUntil) { event.preventDefault(); return; }
+    if (button.hasAttribute('data-answer-slot')) {
+      const slot = Number(button.dataset.answerSlot);
+      const tokenId = current().arrangement[slot];
+      if (selected) {
+        if (selected.fromSlot === slot) { selected = null; paintSelection(); }
+        else place(selected.tokenId, slot);
+      } else if (tokenId !== null) choose(tokenId, slot);
+      else announce('Select a scrambled letter first, then choose this answer box.');
+    } else {
+      const tokenId = Number(button.dataset.tokenId);
+      const origin = slotFor(tokenId);
+      if (origin === -1) choose(tokenId, -1);
+      else if (selected && selected.tokenId === tokenId) returnToBank(tokenId);
+      else announce('This letter is already in answer box ' + (origin + 1) + '. Select it there to move it.');
+    }
+  }
+
+  function removeDrag() {
+    const previous = drag;
+    if (!previous) return null;
+    drag = null;
+    previous.ghost?.remove();
+    previous.button.classList.remove('dragging');
+    document.body.classList.remove('word-is-dragging');
+    $('answerSlots')?.querySelectorAll('.drop-target').forEach(slot => slot.classList.remove('drop-target'));
+    try {
+      if (previous.button.hasPointerCapture?.(previous.pointerId)) previous.button.releasePointerCapture(previous.pointerId);
+    } catch { /* The browser may already have released a cancelled pointer. */ }
+    return previous;
+  }
+
+  function cancelDrag() {
+    const previous = removeDrag();
+    if (previous?.active) suppressClickUntil = now() + 450;
+    selected = null;
+    paintSelection();
+  }
+
+  function onPointerDown(event) {
+    if (!interactive() || drag || event.isPrimary === false || (event.button !== undefined && event.button !== 0)) return;
+    const button = buttonAt(event.target);
+    if (!button || button.disabled) return;
+    const isSlot = button.hasAttribute('data-answer-slot');
+    const fromSlot = isSlot ? Number(button.dataset.answerSlot) : -1;
+    const tokenId = isSlot ? current().arrangement[fromSlot] : Number(button.dataset.tokenId);
+    if (tokenId === null || (!isSlot && slotFor(tokenId) !== -1)) return;
+    drag = { pointerId: event.pointerId, tokenId, fromSlot, round: current(), button,
+      startX: event.clientX, startY: event.clientY, active: false, ghost: null };
+    try { button.setPointerCapture?.(event.pointerId); } catch { /* Document listeners still finish this gesture. */ }
+  }
+
+  function dropTarget(x, y) {
+    const hit = document.elementFromPoint(x, y);
+    if (!hit || !hit.closest) return null;
+    const slot = hit.closest('[data-answer-slot]');
+    if (slot && $('answerSlots').contains(slot)) return { slot: Number(slot.dataset.answerSlot), node: slot };
+    if (hit.closest('#letters') || hit.closest('#letterWrap')) return { bank: true };
+    return null;
+  }
+
+  function onPointerMove(event) {
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    if (!interactive() || drag.round !== current()) { cancelDrag(); return; }
+    if (!drag.active && Math.hypot(event.clientX - drag.startX, event.clientY - drag.startY) < 5) return;
+    event.preventDefault();
+    if (!drag.active) {
+      drag.active = true;
+      selected = null;
+      paintSelection();
+      const rect = drag.button.getBoundingClientRect();
+      const ghost = document.createElement('div');
+      ghost.className = 'word-drag-ghost';
+      ghost.textContent = letterFor(drag.tokenId);
+      ghost.setAttribute('aria-hidden', 'true');
+      ghost.style.position = 'fixed';
+      ghost.style.pointerEvents = 'none';
+      ghost.style.zIndex = '10000';
+      ghost.style.width = Math.max(44, rect.width) + 'px';
+      ghost.style.height = Math.max(44, rect.height) + 'px';
+      document.body.append(ghost);
+      drag.ghost = ghost;
+      drag.button.classList.add('dragging');
+      document.body.classList.add('word-is-dragging');
+    }
+    drag.ghost.style.left = event.clientX + 'px';
+    drag.ghost.style.top = event.clientY + 'px';
+    drag.ghost.style.transform = 'translate(-50%, -50%)';
+    const target = dropTarget(event.clientX, event.clientY);
+    $('answerSlots').querySelectorAll('[data-answer-slot]').forEach(slot => {
+      slot.classList.toggle('drop-target', slot === target?.node);
+    });
+  }
+
+  function onPointerUp(event) {
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    const gesture = drag;
+    const target = gesture.active ? dropTarget(event.clientX, event.clientY) : null;
+    removeDrag();
+    if (!gesture.active) return;
+    event.preventDefault();
+    suppressClickUntil = now() + 450;
+    if (!interactive() || gesture.round !== current()) return;
+    if (target && target.slot !== undefined) place(gesture.tokenId, target.slot);
+    else if (target?.bank) returnToBank(gesture.tokenId);
+    else announce('Letter returned to its original position. Drop it in an answer box.');
+  }
+
+  function handleKey(event) {
+    if (event.key !== 'Escape' || (!drag && !selected)) return false;
+    event.preventDefault();
+    cancelDrag();
+    announce('Letter selection cancelled.');
+    return true;
+  }
+
+  function init() {
+    if (initialized) return;
+    initialized = true;
+    for (const row of [$('letters'), $('answerSlots')]) {
+      row.addEventListener('click', onClick);
+      row.addEventListener('pointerdown', onPointerDown);
+      row.addEventListener('dragstart', event => event.preventDefault());
+      row.addEventListener('lostpointercapture', event => {
+        if (drag && event.pointerId === drag.pointerId) cancelDrag();
+      });
+    }
+    document.addEventListener('pointermove', onPointerMove, { passive: false });
+    document.addEventListener('pointerup', onPointerUp, { passive: false });
+    document.addEventListener('pointercancel', event => {
+      if (drag && event.pointerId === drag.pointerId) cancelDrag();
+    });
+    window.addEventListener('blur', cancelDrag);
+    window.addEventListener('resize', cancelDrag);
+    $('submitWordButton').addEventListener('click', submit);
+    $('clearWordButton').addEventListener('click', clear);
+    render();
+  }
+
+  function getState() {
+    const state = current();
+    return {
+      index,
+      arrangement: state ? [...state.arrangement] : [],
+      scrambled: state?.scrambled || '',
+      answer: state ? state.arrangement.map(token => token === null ? '' : state.scrambled[token]).join('') : '',
+      checked: !!state?.checked,
+      revealed: !!state?.revealed,
+      submission: state?.submission || null,
+      selected: selected ? { ...selected } : null,
+      dragging: drag ? { tokenId: drag.tokenId, fromSlot: drag.fromSlot, active: drag.active } : null
+    };
+  }
+
+  return { init, render, cancelDrag, clear, submit, handleKey, getState };
+})();
+
+
     function switchGame(game) {
       Jigsaw.cancelDrag();
+      WordArrange.cancelDrag();
       activeGame = game === 'words' ? 'words' : 'jigsaw';
       const isPuzzle = activeGame === 'jigsaw';
       $('scrambleGamePanel').hidden = isPuzzle;
       $('jigsawGamePanel').hidden = !isPuzzle;
       document.body.classList.toggle('jigsaw-mode',isPuzzle);
+      document.body.classList.toggle('word-arrange-mode',!isPuzzle);
       $('gameWordsButton').classList.toggle('selected',!isPuzzle);
       $('gameJigsawButton').classList.toggle('selected',isPuzzle);
       $('gameWordsButton').setAttribute('aria-pressed',String(!isPuzzle));
@@ -1431,11 +1795,13 @@ const Jigsaw = (() => {
       $('helpTitle').textContent = isPuzzle ? 'Let’s piece it together.' : 'Let’s play, baby.';
       $('keyboardHints').innerHTML = isPuzzle ? '<kbd>H</kbd> picture guide <kbd>←</kbd> <kbd>→</kbd> pictures' : '<kbd>H</kbd> hint <kbd>R</kbd> reveal <kbd>→</kbd> next';
       if (isPuzzle) Jigsaw.render();
-      announce(isPuzzle ? 'Game 2, Baby Picture Puzzles. Drag a piece or tap a piece and its spot.' : 'Game 1, Baby Word Scramble. Guess the scrambled baby word.');
+      else WordArrange.render();
+      announce(isPuzzle ? 'Game 2, Baby Picture Puzzles. Drag a piece or tap a piece and its spot.' : 'Game 1, Baby Word Scramble. Drag letters into the answer boxes, then press Submit.');
     }
     $('gameWordsButton').addEventListener('click',()=>switchGame('words'));
     $('gameJigsawButton').addEventListener('click',()=>switchGame('jigsaw'));
     startGame();
+    WordArrange.init();
     Jigsaw.init();
     switchGame('jigsaw');
 
