@@ -71,7 +71,7 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
 
   </style>
 </head>
-<body class="jigsaw-mode">
+<body class="word-arrange-mode">
   <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><defs>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
     <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></symbol>
@@ -189,10 +189,10 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
 </g></svg></div>
       </section>
       <div class="game-switcher" role="group" aria-label="Choose a party game">
-        <button id="gameWordsButton" class="game-tab" aria-pressed="false" aria-controls="scrambleGamePanel"><span class="game-tab-number">01</span><span class="game-tab-copy"><strong>Baby Word Scramble</strong><small>20 words · Arrange &amp; check</small></span></button>
-        <button id="gameJigsawButton" class="game-tab selected" aria-pressed="true" aria-controls="jigsawGamePanel"><span class="game-tab-number">02</span><span class="game-tab-copy"><strong>Baby Picture Puzzles</strong><small>20 pictures · Drag &amp; play</small></span></button>
+        <button id="gameWordsButton" class="game-tab selected" aria-pressed="true" aria-controls="scrambleGamePanel"><span class="game-tab-number">01</span><span class="game-tab-copy"><strong>Baby Word Scramble</strong><small>20 words · Arrange &amp; check</small></span></button>
+        <button id="gameJigsawButton" class="game-tab" aria-pressed="false" aria-controls="jigsawGamePanel"><span class="game-tab-number">02</span><span class="game-tab-copy"><strong>Baby Picture Puzzles</strong><small>20 pictures · Drag &amp; play</small></span></button>
       </div>
-      <div id="scrambleGamePanel" hidden>
+      <div id="scrambleGamePanel">
       <section class="game-card" aria-label="Baby word scramble game">
         <div class="card-header"><div class="game-heading"><span class="game-badge" aria-hidden="true"><svg class="icon"><use href="#i-blocks"/></svg></span><div><p class="game-kicker">PARTY GAME 01</p><h2 class="game-name">Baby Word Scramble</h2></div></div><div class="game-metrics"><div class="timer-chip" id="wordsTimerChip" aria-label="Elapsed time"><span class="timer-label">TIME</span><span class="timer-value" id="wordsTimer">00:00</span></div><div class="counter" id="counter" aria-label="Word 1 of 20"><strong>01</strong> / 20</div></div></div>
         <div class="progress-track" role="progressbar" id="progressTrack" aria-label="Position in game" aria-valuemin="1" aria-valuemax="20" aria-valuenow="1"><div class="progress-bar" id="progressBar"></div></div>
@@ -265,7 +265,7 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
       <p class="nav-caption">Jump to a word</p>
       <nav class="round-nav" id="roundNav" aria-label="Choose a word"></nav>
       </div>
-      <section id="jigsawGamePanel" aria-label="Baby picture puzzles">
+      <section id="jigsawGamePanel" aria-label="Baby picture puzzles" hidden>
   <div class="game-card jigsaw-card">
     <div class="card-header">
       <div class="game-heading"><span class="game-badge" aria-hidden="true"><svg class="icon"><use href="#i-puzzle"/></svg></span><div><p class="game-kicker">PARTY GAME 02 · SIX LITTLE PIECES</p><h2 class="game-name">Baby Picture Puzzles</h2></div></div>
@@ -591,7 +591,7 @@ const BABY_ART = {
     ]}];
     const WORDS = PARTY_GAMES[0].words;
     const $ = id => document.getElementById(id);
-    let activeGame = 'jigsaw';
+    let activeGame = 'words';
     let index = 0;
     let finished = false;
     let states = [];
@@ -2181,7 +2181,7 @@ const PartyResults = (() => {
     startGame();
     WordArrange.init();
     Jigsaw.init();
-    switchGame('jigsaw');
+    switchGame('words');
 
   </script>
 </body>
