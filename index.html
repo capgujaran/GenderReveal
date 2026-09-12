@@ -69,6 +69,10 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
 @media(max-width:700px){.game-metrics{gap:5px}.timer-chip{min-width:63px;padding:6px 8px;border-radius:11px;gap:3px}.timer-value{font-size:14px;letter-spacing:.4px}.timer-label{font-size:6px;letter-spacing:1.1px;gap:4px}.timer-label:before{width:4px;height:4px}.game-metrics .counter{min-width:62px;padding:6px 7px}.game-metrics .counter strong{font-size:15px}.card-header{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px}.game-heading{min-width:0;gap:8px}.game-heading .game-name{font-size:14px}.game-heading .game-kicker{font-size:6px;letter-spacing:1px;line-height:1.5}.game-heading .game-badge{width:31px;height:31px;flex:none}.game-heading .game-badge .icon{width:17px;height:17px}.results-panel{margin-top:18px}.result-stats{gap:8px;max-width:380px;margin-bottom:17px}.result-stat{padding:12px 8px;border-radius:12px;gap:7px}.result-stat-label{font-size:7px;letter-spacing:1.1px}.result-stat strong{font-size:21px}.result-columns{grid-template-columns:1fr;gap:16px}.result-entry{padding:17px;border-radius:15px}.result-entry h3{font-size:21px}.result-entry .entry-intro{font-size:10px;margin:7px 0 13px}.name-form input{height:44px;font-size:16px}.name-form label{font-size:10px}.save-score{min-height:43px;margin-top:10px}.leaderboard-card{border-radius:15px}.leaderboard-heading{padding:16px}.leaderboard-heading h3{font-size:21px}.leaderboard-table{font-size:12px}.leaderboard-table th{font-size:7px}.leaderboard-table th:last-child{width:108px}.leaderboard-table td{padding-top:12px;padding-bottom:12px}.completion.has-results{padding:23px 15px 25px}.completion.has-results h2{font-size:28px}.completion.has-results>p{font-size:11px}.completion.has-results .eyebrow{font-size:8px;letter-spacing:1.2px}.completion.has-results .action{min-width:133px;font-size:11px;height:44px}.completion.has-results .completion-actions{gap:9px}.leaderboard-storage-note{font-size:8px!important}}
 @media(max-width:360px){.timer-chip{min-width:57px;padding:6px}.game-metrics .counter{min-width:56px}.timer-value{font-size:13px}.game-heading .game-name{font-size:13px}.game-heading .game-badge{width:28px;height:28px}.game-heading{gap:6px}.game-heading .game-kicker{font-size:5.5px;letter-spacing:.65px}.result-stat strong{font-size:19px}.completion.has-results{padding-left:12px;padding-right:12px}.completion.has-results .action{min-width:122px;font-size:10px}}
 
+  
+/* A scoreboard accessible throughout the party. */
+.game-menu{display:flex;align-items:center;justify-content:center;gap:14px;max-width:760px;margin:0 auto 16px}.game-menu .game-switcher{flex:1;margin:0;padding:0;max-width:580px}.scoreboard-open{display:inline-flex;align-items:center;justify-content:center;gap:8px;flex:none;min-height:44px;padding:11px 18px;border-radius:14px;border:1px solid #d9c5e7;background:linear-gradient(120deg,#eff8ff,#fff0f7);color:#895889;font-size:12px;font-weight:750;box-shadow:0 3px 9px #8f6eac12}.scoreboard-open .icon{color:#b58d42;width:19px;height:19px}.scoreboard-open:hover{background:#fff4fa;border-color:#c28eb5}.scoreboard-dialog{max-width:590px;max-height:calc(100dvh - 36px);overflow-y:auto;padding:27px;background:linear-gradient(145deg,#fff,#fef6fb)}.scoreboard-dialog .dialog-header h2{display:flex;align-items:center;gap:10px;color:#8065a0}.scoreboard-dialog .dialog-header h2 .icon{width:27px;height:27px;color:#b38a43}.scoreboard-dialog .close-btn{width:44px;height:44px;flex:none}.scoreboard-intro{font-size:12px;line-height:1.7;color:#7d87a0;margin:12px 0 19px}.scoreboard-tabs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:17px}.scoreboard-game{display:flex;flex-direction:column;align-items:center;gap:6px;padding:13px 8px;min-height:61px;border:1px solid #dbe3ef;border-radius:12px;background:white;color:#7f8aa1;font-size:13px;font-weight:700}.scoreboard-game span{font-size:8px;letter-spacing:1.5px}.scoreboard-game.selected{border-color:#c895b8;background:#fff0f8;color:#a64b81}.scoreboard-game:last-child.selected{border-color:#95badb;background:#edf7ff;color:#387fad}.scoreboard-dialog .leaderboard-heading h3{font-size:23px}.scoreboard-dialog .leaderboard-table{font-size:14px;color:#61738f}.scoreboard-dialog .leaderboard-table td{padding-top:13px;padding-bottom:13px}.scoreboard-dialog .leaderboard-table td:last-child{font-size:13px}.scoreboard-dialog .leaderboard-storage-note{font-size:10px!important;color:#77869e!important}.scoreboard-timer-note{font-size:11px;line-height:1.6;color:#82698c;margin:15px 0 0;text-align:center}.scoreboard-back{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:44px;margin-top:18px;border:1px solid #c4dced;border-radius:12px;background:#edf7ff;color:#3977a6;font-size:13px;font-weight:700}.scoreboard-back:hover{background:#dfedf9}
+@media(max-width:700px){.game-menu{flex-wrap:wrap;gap:9px;max-width:435px;margin-bottom:15px}.game-menu .game-switcher{flex-basis:100%;max-width:100%}.scoreboard-open{padding:9px 20px;min-height:44px;border-radius:12px;font-size:12px}.scoreboard-dialog{padding:20px 17px;width:calc(100% - 28px);max-height:calc(100dvh - 28px);border-radius:20px}.scoreboard-dialog .dialog-header h2{font-size:27px}.scoreboard-dialog .leaderboard-heading h3{font-size:22px}.scoreboard-intro{font-size:11px;margin-top:9px}.scoreboard-game{font-size:12px}.scoreboard-dialog .leaderboard-table{font-size:12px}.scoreboard-dialog .leaderboard-table td:last-child{font-size:12px}.scoreboard-dialog .leaderboard-storage-note{font-size:9px!important}}
   </style>
 </head>
 <body class="word-arrange-mode">
@@ -188,9 +192,12 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
 <circle cx="283" cy="89" r="3" fill="#78b8e2" stroke="none"/>
 </g></svg></div>
       </section>
+      <div class="game-menu">
       <div class="game-switcher" role="group" aria-label="Choose a party game">
         <button id="gameWordsButton" class="game-tab selected" aria-pressed="true" aria-controls="scrambleGamePanel"><span class="game-tab-number">01</span><span class="game-tab-copy"><strong>Baby Word Scramble</strong><small>20 words · Arrange &amp; check</small></span></button>
         <button id="gameJigsawButton" class="game-tab" aria-pressed="false" aria-controls="jigsawGamePanel"><span class="game-tab-number">02</span><span class="game-tab-copy"><strong>Baby Picture Puzzles</strong><small>20 pictures · Drag &amp; play</small></span></button>
+      </div>
+      <button type="button" class="scoreboard-open" id="scoreboardButton" aria-haspopup="dialog" aria-controls="scoreboardDialog"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg><span>Scoreboard</span></button>
       </div>
       <div id="scrambleGamePanel">
       <section class="game-card" aria-label="Baby word scramble game">
@@ -324,6 +331,23 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
     </main>
     <footer class="page-footer"><span class="footer-love"><svg class="icon"><use href="#i-heart"/></svg>Team pink. Team blue. All love.</span><span class="keyboard-note" id="keyboardHints"><kbd>H</kbd> hint <kbd>R</kbd> reveal <kbd>→</kbd> next</span><button class="restart-btn" id="restartButton"><svg class="icon"><use href="#i-restart"/></svg>Start over</button></footer>
   </div>
+
+  <dialog id="scoreboardDialog" class="scoreboard-dialog" aria-labelledby="scoreboardTitle" aria-describedby="scoreboardIntro">
+    <div class="dialog-header"><h2 id="scoreboardTitle"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg>Scoreboard</h2><button type="button" class="close-btn" id="closeScoreboard" aria-label="Close scoreboard" autofocus><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+    <p class="scoreboard-intro" id="scoreboardIntro">A little friendly competition. Fastest finishers come first!</p>
+    <div class="scoreboard-tabs" role="group" aria-label="Choose a game's scoreboard">
+      <button type="button" class="scoreboard-game selected" id="scoreboardWordsButton" aria-pressed="true" aria-controls="scoreboardLeaders"><span>GAME 01</span>Word Scramble</button>
+      <button type="button" class="scoreboard-game" id="scoreboardJigsawButton" aria-pressed="false" aria-controls="scoreboardLeaders"><span>GAME 02</span>Picture Puzzles</button>
+    </div>
+    <section class="leaderboard-card" id="scoreboardLeaders" aria-labelledby="scoreboardGameTitle">
+      <div class="leaderboard-heading"><h3 id="scoreboardGameTitle">Baby Word Scramble</h3><p>Fastest completed games first · Top 10</p></div>
+      <table class="leaderboard-table"><caption class="sr-only">Saved players ranked by shortest completion time</caption><thead><tr><th scope="col">Rank</th><th scope="col">Player</th><th scope="col">Time</th></tr></thead><tbody id="scoreboardLeaderboardBody"></tbody></table>
+      <p class="leaderboard-empty" id="scoreboardLeaderboardEmpty">No times saved yet. Complete a game and save your name to appear here.</p>
+      <p class="leaderboard-storage-note" id="scoreboardLeaderboardStorageNote">Saved on this device. Leaderboards are not shared between devices.</p>
+    </section>
+    <p class="scoreboard-timer-note" id="scoreboardTimerNote" hidden>Your game timer continues while you view scores.</p>
+    <button type="button" class="scoreboard-back" id="scoreboardBackButton"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg>Back to game</button>
+  </dialog>
   <dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">Let’s play, baby.</h2><button class="close-btn" id="closeHelp" aria-label="Close instructions"><svg class="icon"><use href="#i-close"/></svg></button></div><ol class="instructions" id="wordInstructions"><li><strong>Build your answer.</strong> Drag letters from the scrambled row into the boxes below. Or tap a letter, then tap an answer box.</li><li><strong>Rearrange freely.</strong> Drag between answer boxes to swap letters. Drag a letter back up to remove it, or use Clear to start again.</li><li><strong>Check your guess.</strong> Tap Submit. A correct answer shows the word and picture; an incorrect answer lets you try again.</li><li><strong>Need a little help?</strong> Hint shows a picture. Reveal answer shows the word. Use Next word to continue through all 20.</li></ol><p class="help-note" id="wordHelpNote">Play at your own pace. Each letter can be used once, including repeated letters.<br>Use H for Hint, R for Reveal, and the arrow keys to move between words. Escape cancels a selected letter. Press F for full screen.<span class="timing-note">The timer starts on your first action and pauses when you switch games. Submit all 20 words correctly to record a leaderboard time; revealed answers do not count. Fastest times appear first.</span></p><ol class="instructions" id="jigsawInstructions" hidden><li><strong>Choose a piece.</strong> The pieces are mixed up in the tray on the right. Swipe up or down, or use its arrow buttons to see more.</li><li><strong>Drag it left.</strong> Move a piece onto the big board. It snaps into place when you find the right spot.</li><li><strong>Or tap to place.</strong> Tap a piece to select it, then tap a space on the board. This works with a finger, mouse, or keyboard.</li><li><strong>Need help?</strong> Show picture adds a guide to the board. Put all six pieces together, then try the next picture!</li></ol><p class="help-note" id="jigsawHelpNote" hidden">There are 20 pictures. You can revisit any picture and keep the pieces you already placed. Reset starts the current picture again; Start over resets this game.<br>Use H for the picture guide, left/right arrows for pictures, and Escape to put down a selected piece. Press F for full screen.<span class="timing-note">The timer starts on your first action and pauses when you switch games. Complete all 20 pictures to record a leaderboard time. Fastest times appear first.</span></p></dialog>
   <div class="toast" id="toast" role="status" hidden></div>
   <div class="sr-only" id="announcer" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -745,7 +769,7 @@ const BABY_ART = {
       $('fullscreenButton').setAttribute('aria-label',document.fullscreenElement?'Exit full screen':'Enter full screen');
     });
     document.addEventListener('keydown',event=>{
-      if (event.repeat || event.altKey || event.ctrlKey || event.metaKey || $('helpDialog').open || /INPUT|TEXTAREA|SELECT/.test(event.target.tagName)) return;
+      if (event.repeat || event.altKey || event.ctrlKey || event.metaKey || $('helpDialog').open || $('scoreboardDialog').open || /INPUT|TEXTAREA|SELECT/.test(event.target.tagName)) return;
       if (activeGame === 'jigsaw') {
         if(event.key.toLowerCase() === 'f') { event.preventDefault(); toggleFullscreen(); }
         else Jigsaw.handleKey(event);
@@ -1834,6 +1858,7 @@ const PartyResults = (() => {
   let sequence = 0;
   let entries = [];
   let storageAvailable = true;
+  let scoreboardGame = 'words';
 
   const byId = id => typeof document === 'undefined' ? null : document.getElementById(id);
   const validGame = game => games.includes(game);
@@ -2087,7 +2112,13 @@ const PartyResults = (() => {
           : 'Add your name to join the leaderboard. Fastest completed games come first.');
       message.dataset.kind = attempt.noticeKind || (result && !result.eligible ? 'incomplete' : '');
     }
-    const body = byId(game + 'LeaderboardBody');
+    renderLeaderboard(game, game);
+    if (byId('scoreboardDialog')?.open) renderScoreboard();
+  }
+
+  function renderLeaderboard(game, prefix) {
+    const attempt = attempts[game];
+    const body = byId(prefix + 'LeaderboardBody');
     const leaders = entries.filter(entry => entry.game === game).sort(compare).slice(0, 10);
     if (body) {
       const rows = leaders.map((entry, index) => {
@@ -2102,12 +2133,38 @@ const PartyResults = (() => {
       });
       body.replaceChildren(...rows);
     }
-    const empty = byId(game + 'LeaderboardEmpty');
+    const empty = byId(prefix + 'LeaderboardEmpty');
     if (empty) empty.hidden = leaders.length > 0;
-    const note = byId(game + 'LeaderboardStorageNote');
+    const note = byId(prefix + 'LeaderboardStorageNote');
     if (note) note.textContent = storageAvailable
       ? 'Saved on this device. Leaderboards are not shared between devices.'
       : 'Saved for this tab only. Browser storage is unavailable.';
+  }
+
+  function renderScoreboard() {
+    const isWords = scoreboardGame === 'words';
+    const title = byId('scoreboardGameTitle');
+    if (title) title.textContent = isWords ? 'Baby Word Scramble' : 'Baby Picture Puzzles';
+    ['Words', 'Jigsaw'].forEach(label => {
+      const selected = (label === 'Words') === isWords;
+      const button = byId('scoreboard' + label + 'Button');
+      if (button) {
+        button.setAttribute('aria-pressed', String(selected));
+        button.classList.toggle('selected', selected);
+      }
+    });
+    renderLeaderboard(scoreboardGame, 'scoreboard');
+    const note = byId('scoreboardTimerNote');
+    if (note) note.hidden = !games.some(game => attempts[game].running);
+  }
+
+  function showScoreboard() {
+    const dialog = byId('scoreboardDialog');
+    if (!dialog || dialog.open) return;
+    scoreboardGame = visibleGame() || 'words';
+    refreshEntries();
+    renderScoreboard();
+    dialog.showModal();
   }
 
   function init() {
@@ -2125,6 +2182,28 @@ const PartyResults = (() => {
         render(game);
       });
       render(game);
+    });
+    byId('scoreboardButton')?.addEventListener('click', () => {
+      WordArrange.cancelDrag();
+      Jigsaw.cancelDrag();
+      showScoreboard();
+    });
+    ['Words', 'Jigsaw'].forEach(label => {
+      byId('scoreboard' + label + 'Button')?.addEventListener('click', () => {
+        scoreboardGame = label === 'Words' ? 'words' : 'jigsaw';
+        refreshEntries();
+        renderScoreboard();
+      });
+    });
+    const scoreboard = byId('scoreboardDialog');
+    byId('closeScoreboard')?.addEventListener('click', () => scoreboard.close());
+    byId('scoreboardBackButton')?.addEventListener('click', () => scoreboard.close());
+    scoreboard?.addEventListener('close', () => byId('scoreboardButton')?.focus({ preventScroll: true }));
+    scoreboard?.addEventListener('click', event => {
+      if (event.target !== scoreboard) return;
+      const bounds = scoreboard.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right
+        || event.clientY < bounds.top || event.clientY > bounds.bottom) scoreboard.close();
     });
     setInterval(() => {
       games.forEach(game => {

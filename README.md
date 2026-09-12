@@ -11,6 +11,8 @@ Game 1, Baby Word Scramble, opens by default. Use the game selector to switch ga
 
 ## Timer and leaderboard
 
+Choose **Scoreboard** beside the game selector at any time to view saved results for either game. Switch between Word Scramble and Picture Puzzles inside the scoreboard, then choose **Back to game** or close it to return to your current round. Opening the scoreboard keeps your progress and leaves a running timer running.
+
 Each game has its own elapsed timer. It starts on the first game action, pauses when you switch games, and stops as soon as the last answer or piece is correct. Time spent entering your name does not count. Play again or Start over begins a fresh attempt.
 
 At the end, optionally enter your name and choose **Save my time**. Each game's leaderboard shows the top 10, with the **fastest completion time first**, measured to hundredths of a second. Solve all 20 words with Submit, or complete all 20 pictures, to qualify. Picture hints are allowed; word answers shown with Reveal do not count as correct submissions. Skipped rounds cannot earn a leaderboard place.
