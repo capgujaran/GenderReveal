@@ -69,6 +69,10 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
 @media(max-width:700px){.game-metrics{gap:5px}.timer-chip{min-width:63px;padding:6px 8px;border-radius:11px;gap:3px}.timer-value{font-size:14px;letter-spacing:.4px}.timer-label{font-size:6px;letter-spacing:1.1px;gap:4px}.timer-label:before{width:4px;height:4px}.game-metrics .counter{min-width:62px;padding:6px 7px}.game-metrics .counter strong{font-size:15px}.card-header{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px}.game-heading{min-width:0;gap:8px}.game-heading .game-name{font-size:14px}.game-heading .game-kicker{font-size:6px;letter-spacing:1px;line-height:1.5}.game-heading .game-badge{width:31px;height:31px;flex:none}.game-heading .game-badge .icon{width:17px;height:17px}.results-panel{margin-top:18px}.result-stats{gap:8px;max-width:380px;margin-bottom:17px}.result-stat{padding:12px 8px;border-radius:12px;gap:7px}.result-stat-label{font-size:7px;letter-spacing:1.1px}.result-stat strong{font-size:21px}.result-columns{grid-template-columns:1fr;gap:16px}.result-entry{padding:17px;border-radius:15px}.result-entry h3{font-size:21px}.result-entry .entry-intro{font-size:10px;margin:7px 0 13px}.name-form input{height:44px;font-size:16px}.name-form label{font-size:10px}.save-score{min-height:43px;margin-top:10px}.leaderboard-card{border-radius:15px}.leaderboard-heading{padding:16px}.leaderboard-heading h3{font-size:21px}.leaderboard-table{font-size:12px}.leaderboard-table th{font-size:7px}.leaderboard-table th:last-child{width:108px}.leaderboard-table td{padding-top:12px;padding-bottom:12px}.completion.has-results{padding:23px 15px 25px}.completion.has-results h2{font-size:28px}.completion.has-results>p{font-size:11px}.completion.has-results .eyebrow{font-size:8px;letter-spacing:1.2px}.completion.has-results .action{min-width:133px;font-size:11px;height:44px}.completion.has-results .completion-actions{gap:9px}.leaderboard-storage-note{font-size:8px!important}}
 @media(max-width:360px){.timer-chip{min-width:57px;padding:6px}.game-metrics .counter{min-width:56px}.timer-value{font-size:13px}.game-heading .game-name{font-size:13px}.game-heading .game-badge{width:28px;height:28px}.game-heading{gap:6px}.game-heading .game-kicker{font-size:5.5px;letter-spacing:.65px}.result-stat strong{font-size:19px}.completion.has-results{padding-left:12px;padding-right:12px}.completion.has-results .action{min-width:122px;font-size:10px}}
 
+/* Keep scores visible alongside time, including on narrow phones. */
+.leaderboard-table th:first-child{width:40px}.leaderboard-table th:nth-child(3){width:70px;text-align:center}.leaderboard-table td:nth-child(3){text-align:center;font-size:11px;white-space:nowrap;font-variant-numeric:tabular-nums;color:#936b91}.leaderboard-table th:last-child{width:100px}
+@media(max-width:700px){.leaderboard-table th,.leaderboard-table td{padding-left:7px;padding-right:7px}.leaderboard-table th:first-child{width:32px}.leaderboard-table th:nth-child(3){width:63px}.leaderboard-table th:last-child{width:88px}.leaderboard-table th{letter-spacing:.7px}.leaderboard-table td:nth-child(3){font-size:10px}}
+
   
 /* A scoreboard accessible throughout the party. */
 .game-menu{display:flex;align-items:center;justify-content:center;gap:14px;max-width:760px;margin:0 auto 16px}.game-menu .game-switcher{flex:1;margin:0;padding:0;max-width:580px}.scoreboard-open{display:inline-flex;align-items:center;justify-content:center;gap:8px;flex:none;min-height:44px;padding:11px 18px;border-radius:14px;border:1px solid #d9c5e7;background:linear-gradient(120deg,#eff8ff,#fff0f7);color:#895889;font-size:12px;font-weight:750;box-shadow:0 3px 9px #8f6eac12}.scoreboard-open .icon{color:#b58d42;width:19px;height:19px}.scoreboard-open:hover{background:#fff4fa;border-color:#c28eb5}.scoreboard-dialog{max-width:590px;max-height:calc(100dvh - 36px);overflow-y:auto;padding:27px;background:linear-gradient(145deg,#fff,#fef6fb)}.scoreboard-dialog .dialog-header h2{display:flex;align-items:center;gap:10px;color:#8065a0}.scoreboard-dialog .dialog-header h2 .icon{width:27px;height:27px;color:#b38a43}.scoreboard-dialog .close-btn{width:44px;height:44px;flex:none}.scoreboard-intro{font-size:12px;line-height:1.7;color:#7d87a0;margin:12px 0 19px}.scoreboard-tabs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:17px}.scoreboard-game{display:flex;flex-direction:column;align-items:center;gap:6px;padding:13px 8px;min-height:61px;border:1px solid #dbe3ef;border-radius:12px;background:white;color:#7f8aa1;font-size:13px;font-weight:700}.scoreboard-game span{font-size:8px;letter-spacing:1.5px}.scoreboard-game.selected{border-color:#c895b8;background:#fff0f8;color:#a64b81}.scoreboard-game:last-child.selected{border-color:#95badb;background:#edf7ff;color:#387fad}.scoreboard-dialog .leaderboard-heading h3{font-size:23px}.scoreboard-dialog .leaderboard-table{font-size:14px;color:#61738f}.scoreboard-dialog .leaderboard-table td{padding-top:13px;padding-bottom:13px}.scoreboard-dialog .leaderboard-table td:last-child{font-size:13px}.scoreboard-dialog .leaderboard-storage-note{font-size:10px!important;color:#77869e!important}.scoreboard-timer-note{font-size:11px;line-height:1.6;color:#82698c;margin:15px 0 0;text-align:center}.scoreboard-back{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:44px;margin-top:18px;border:1px solid #c4dced;border-radius:12px;background:#edf7ff;color:#3977a6;font-size:13px;font-weight:700}.scoreboard-back:hover{background:#dfedf9}
@@ -262,8 +266,8 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
       <div class="results-panel" id="wordsResultPanel" tabindex="-1" hidden>
         <div class="result-stats"><div class="result-stat"><span class="result-stat-label">CORRECT WORDS</span><strong id="wordsResultScore">0</strong></div><div class="result-stat"><span class="result-stat-label">YOUR TIME</span><strong id="wordsResultTime">00:00.00</strong></div></div>
         <div class="result-columns">
-          <section class="result-entry" aria-label="Save your time"><h3>Make it your moment.</h3><p class="entry-intro">Add your name and see where you finish.</p><form class="name-form" id="wordsNameForm"><label for="wordsPlayerName">Your name (optional)</label><input id="wordsPlayerName" name="playerName" type="text" maxlength="24" autocomplete="nickname" placeholder="Enter your name" aria-describedby="wordsResultMessage"><button type="submit" class="save-score" id="wordsSaveScore"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg><span id="wordsSaveLabel">Save my time</span></button></form><p class="result-message" id="wordsResultMessage" role="status" aria-live="polite"></p></section>
-          <section class="leaderboard-card" aria-label="Fastest completed games leaderboard"><div class="leaderboard-heading"><h3><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg>Fastest finishers</h3><p>Fastest completed games first · Top 10</p></div><table class="leaderboard-table"><caption class="sr-only">Leaderboard sorted by fastest completion time</caption><thead><tr><th scope="col">Rank</th><th scope="col">Player</th><th scope="col">Time</th></tr></thead><tbody id="wordsLeaderboardBody"></tbody></table><p class="leaderboard-empty" id="wordsLeaderboardEmpty">No times yet. Be the first!</p><p class="leaderboard-storage-note" id="wordsLeaderboardStorageNote">Saved on this device.</p></section>
+          <section class="result-entry" aria-label="Save your time"><h3>Make it your moment.</h3><p class="entry-intro">Add your name and see where you finish.</p><form class="name-form" id="wordsNameForm"><label for="wordsPlayerName">Your name (optional)</label><input id="wordsPlayerName" name="playerName" type="text" maxlength="24" autocomplete="nickname" placeholder="Enter your name" aria-describedby="wordsResultMessage"><button type="submit" class="save-score" id="wordsSaveScore"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg><span id="wordsSaveLabel">Save my score</span></button></form><p class="result-message" id="wordsResultMessage" role="status" aria-live="polite"></p></section>
+          <section class="leaderboard-card" aria-label="Fastest times leaderboard"><div class="leaderboard-heading"><h3><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg>Fastest finishers</h3><p>Fastest times first · Top 10</p></div><table class="leaderboard-table"><caption class="sr-only">Leaderboard sorted by fastest completion time</caption><thead><tr><th scope="col">Rank</th><th scope="col">Player</th><th scope="col">Score</th><th scope="col">Time</th></tr></thead><tbody id="wordsLeaderboardBody"></tbody></table><p class="leaderboard-empty" id="wordsLeaderboardEmpty">No times yet. Be the first!</p><p class="leaderboard-storage-note" id="wordsLeaderboardStorageNote">Saved on this device.</p></section>
         </div>
       </div>
           <div class="completion-actions"><button class="action hint-btn" id="reviewButton">Review the words</button><button class="action reveal-btn" id="playAgainButton"><svg class="icon"><use href="#i-restart"/></svg>Play again</button></div>
@@ -317,8 +321,8 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
       <div class="results-panel" id="jigsawResultPanel" tabindex="-1" hidden>
         <div class="result-stats"><div class="result-stat"><span class="result-stat-label">PIECES PLACED</span><strong id="jigsawResultScore">0</strong></div><div class="result-stat"><span class="result-stat-label">YOUR TIME</span><strong id="jigsawResultTime">00:00.00</strong></div></div>
         <div class="result-columns">
-          <section class="result-entry" aria-label="Save your time"><h3>Make it your moment.</h3><p class="entry-intro">Add your name and see where you finish.</p><form class="name-form" id="jigsawNameForm"><label for="jigsawPlayerName">Your name (optional)</label><input id="jigsawPlayerName" name="playerName" type="text" maxlength="24" autocomplete="nickname" placeholder="Enter your name" aria-describedby="jigsawResultMessage"><button type="submit" class="save-score" id="jigsawSaveScore"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg><span id="jigsawSaveLabel">Save my time</span></button></form><p class="result-message" id="jigsawResultMessage" role="status" aria-live="polite"></p></section>
-          <section class="leaderboard-card" aria-label="Fastest completed games leaderboard"><div class="leaderboard-heading"><h3><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg>Fastest finishers</h3><p>Fastest completed games first · Top 10</p></div><table class="leaderboard-table"><caption class="sr-only">Leaderboard sorted by fastest completion time</caption><thead><tr><th scope="col">Rank</th><th scope="col">Player</th><th scope="col">Time</th></tr></thead><tbody id="jigsawLeaderboardBody"></tbody></table><p class="leaderboard-empty" id="jigsawLeaderboardEmpty">No times yet. Be the first!</p><p class="leaderboard-storage-note" id="jigsawLeaderboardStorageNote">Saved on this device.</p></section>
+          <section class="result-entry" aria-label="Save your time"><h3>Make it your moment.</h3><p class="entry-intro">Add your name and see where you finish.</p><form class="name-form" id="jigsawNameForm"><label for="jigsawPlayerName">Your name (optional)</label><input id="jigsawPlayerName" name="playerName" type="text" maxlength="24" autocomplete="nickname" placeholder="Enter your name" aria-describedby="jigsawResultMessage"><button type="submit" class="save-score" id="jigsawSaveScore"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg><span id="jigsawSaveLabel">Save my score</span></button></form><p class="result-message" id="jigsawResultMessage" role="status" aria-live="polite"></p></section>
+          <section class="leaderboard-card" aria-label="Fastest times leaderboard"><div class="leaderboard-heading"><h3><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg>Fastest finishers</h3><p>Fastest times first · Top 10</p></div><table class="leaderboard-table"><caption class="sr-only">Leaderboard sorted by fastest completion time</caption><thead><tr><th scope="col">Rank</th><th scope="col">Player</th><th scope="col">Score</th><th scope="col">Time</th></tr></thead><tbody id="jigsawLeaderboardBody"></tbody></table><p class="leaderboard-empty" id="jigsawLeaderboardEmpty">No times yet. Be the first!</p><p class="leaderboard-storage-note" id="jigsawLeaderboardStorageNote">Saved on this device.</p></section>
         </div>
       </div>
       <div class="completion-actions"><button class="action hint-btn" id="jigsawContinue">Keep puzzling</button><button class="action reveal-btn" id="jigsawReplay"><svg class="icon" aria-hidden="true"><use href="#i-restart"/></svg>Play again</button></div>
@@ -340,15 +344,15 @@ dialog{background:var(--white);color:var(--ink);border:1px solid var(--line);bor
       <button type="button" class="scoreboard-game" id="scoreboardJigsawButton" aria-pressed="false" aria-controls="scoreboardLeaders"><span>GAME 02</span>Picture Puzzles</button>
     </div>
     <section class="leaderboard-card" id="scoreboardLeaders" aria-labelledby="scoreboardGameTitle">
-      <div class="leaderboard-heading"><h3 id="scoreboardGameTitle">Baby Word Scramble</h3><p>Fastest completed games first · Top 10</p></div>
-      <table class="leaderboard-table"><caption class="sr-only">Saved players ranked by shortest completion time</caption><thead><tr><th scope="col">Rank</th><th scope="col">Player</th><th scope="col">Time</th></tr></thead><tbody id="scoreboardLeaderboardBody"></tbody></table>
+      <div class="leaderboard-heading"><h3 id="scoreboardGameTitle">Baby Word Scramble</h3><p>Fastest times first · Top 10</p></div>
+      <table class="leaderboard-table"><caption class="sr-only">Saved players ranked by shortest completion time</caption><thead><tr><th scope="col">Rank</th><th scope="col">Player</th><th scope="col">Score</th><th scope="col">Time</th></tr></thead><tbody id="scoreboardLeaderboardBody"></tbody></table>
       <p class="leaderboard-empty" id="scoreboardLeaderboardEmpty">No times saved yet. Complete a game and save your name to appear here.</p>
       <p class="leaderboard-storage-note" id="scoreboardLeaderboardStorageNote">Saved on this device. Leaderboards are not shared between devices.</p>
     </section>
     <p class="scoreboard-timer-note" id="scoreboardTimerNote" hidden>Your game timer continues while you view scores.</p>
     <button type="button" class="scoreboard-back" id="scoreboardBackButton"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg>Back to game</button>
   </dialog>
-  <dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">Let’s play, baby.</h2><button class="close-btn" id="closeHelp" aria-label="Close instructions"><svg class="icon"><use href="#i-close"/></svg></button></div><ol class="instructions" id="wordInstructions"><li><strong>Build your answer.</strong> Drag letters from the scrambled row into the boxes below. Or tap a letter, then tap an answer box.</li><li><strong>Rearrange freely.</strong> Drag between answer boxes to swap letters. Drag a letter back up to remove it, or use Clear to start again.</li><li><strong>Check your guess.</strong> Tap Submit. A correct answer shows the word and picture; an incorrect answer lets you try again.</li><li><strong>Need a little help?</strong> Hint shows a picture. Reveal answer shows the word. Use Next word to continue through all 20.</li></ol><p class="help-note" id="wordHelpNote">Play at your own pace. Each letter can be used once, including repeated letters.<br>Use H for Hint, R for Reveal, and the arrow keys to move between words. Escape cancels a selected letter. Press F for full screen.<span class="timing-note">The timer starts on your first action and pauses when you switch games. Submit all 20 words correctly to record a leaderboard time; revealed answers do not count. Fastest times appear first.</span></p><ol class="instructions" id="jigsawInstructions" hidden><li><strong>Choose a piece.</strong> The pieces are mixed up in the tray on the right. Swipe up or down, or use its arrow buttons to see more.</li><li><strong>Drag it left.</strong> Move a piece onto the big board. It snaps into place when you find the right spot.</li><li><strong>Or tap to place.</strong> Tap a piece to select it, then tap a space on the board. This works with a finger, mouse, or keyboard.</li><li><strong>Need help?</strong> Show picture adds a guide to the board. Put all six pieces together, then try the next picture!</li></ol><p class="help-note" id="jigsawHelpNote" hidden">There are 20 pictures. You can revisit any picture and keep the pieces you already placed. Reset starts the current picture again; Start over resets this game.<br>Use H for the picture guide, left/right arrows for pictures, and Escape to put down a selected piece. Press F for full screen.<span class="timing-note">The timer starts on your first action and pauses when you switch games. Complete all 20 pictures to record a leaderboard time. Fastest times appear first.</span></p></dialog>
+  <dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">Let’s play, baby.</h2><button class="close-btn" id="closeHelp" aria-label="Close instructions"><svg class="icon"><use href="#i-close"/></svg></button></div><ol class="instructions" id="wordInstructions"><li><strong>Build your answer.</strong> Drag letters from the scrambled row into the boxes below. Or tap a letter, then tap an answer box.</li><li><strong>Rearrange freely.</strong> Drag between answer boxes to swap letters. Drag a letter back up to remove it, or use Clear to start again.</li><li><strong>Check your guess.</strong> Tap Submit. A correct answer shows the word and picture; an incorrect answer lets you try again.</li><li><strong>Need a little help?</strong> Hint shows a picture. Reveal answer shows the word. Use Next word to continue through all 20.</li></ol><p class="help-note" id="wordHelpNote">Play at your own pace. Each letter can be used once, including repeated letters.<br>Use H for Hint, R for Reveal, and the arrow keys to move between words. Escape cancels a selected letter. Press F for full screen.<span class="timing-note">The timer starts on your first action and pauses when you switch games. You can save any score at the end. Only correct submissions add to your score; revealed answers do not. Fastest times appear first.</span></p><ol class="instructions" id="jigsawInstructions" hidden><li><strong>Choose a piece.</strong> The pieces are mixed up in the tray on the right. Swipe up or down, or use its arrow buttons to see more.</li><li><strong>Drag it left.</strong> Move a piece onto the big board. It snaps into place when you find the right spot.</li><li><strong>Or tap to place.</strong> Tap a piece to select it, then tap a space on the board. This works with a finger, mouse, or keyboard.</li><li><strong>Need help?</strong> Show picture adds a guide to the board. Put all six pieces together, then try the next picture!</li></ol><p class="help-note" id="jigsawHelpNote" hidden">There are 20 pictures. You can revisit any picture and keep the pieces you already placed. Reset starts the current picture again; Start over resets this game.<br>Use H for the picture guide, left/right arrows for pictures, and Escape to put down a selected piece. Press F for full screen.<span class="timing-note">The timer starts on your first action and pauses when you switch games. You can save your score and time at the end, even with unfinished pictures. Fastest times appear first.</span></p></dialog>
   <div class="toast" id="toast" role="status" hidden></div>
   <div class="sr-only" id="announcer" role="status" aria-live="polite" aria-atomic="true"></div>
   <noscript><p style="padding:30px;text-align:center">Please enable JavaScript in your browser to play this game.</p></noscript>
@@ -650,7 +654,7 @@ const BABY_ART = {
     function render() {
       const current = states[index];
       const correctWords = states.filter(state => state.checked).length;
-      if (finished || correctWords === WORDS.length) PartyResults.finish('words',{score:correctWords,maxScore:20,eligible:correctWords===20});
+      if (finished || correctWords === WORDS.length) PartyResults.finish('words',{score:correctWords,maxScore:20,eligible:true});
       $('playScreen').hidden = finished;
       $('completionScreen').hidden = !finished;
       $('counter').innerHTML = '<strong>' + (finished ? '20' : String(index + 1).padStart(2,'0')) + '</strong> / 20';
@@ -1222,7 +1226,7 @@ const Jigsaw = (() => {
     }));
     const completed = states.filter(item => item.placed.length === 6).length;
     const totalPlaced = states.reduce((total, item) => total + item.placed.length, 0);
-    if (finished || totalPlaced===120) PartyResults.finish('jigsaw',{score:totalPlaced,maxScore:120,eligible:totalPlaced===120});
+    if (finished || totalPlaced===120) PartyResults.finish('jigsaw',{score:totalPlaced,maxScore:120,eligible:true});
     $('jigsawSummary').textContent = completed === JIGSAW_SCENES.length
       ? 'You completed all 20 baby pictures — all 120 pieces!'
       : 'You completed ' + completed + ' of 20 pictures and placed ' + totalPlaced + ' of 120 pieces. You can return to any unfinished picture.';
@@ -1874,7 +1878,7 @@ const PartyResults = (() => {
     return {
       id: Date.now().toString(36) + '-' + sequence + '-' + random,
       elapsedMs: 0, since: null, started: false, running: false, finished: false,
-      result: null, bestTimeMs: null, nameDraft: '', notice: '', noticeKind: ''
+      result: null, nameDraft: '', notice: '', noticeKind: ''
     };
   }
 
@@ -1970,14 +1974,11 @@ const PartyResults = (() => {
     const attempt = attempts[game];
     const maxScore = maximum[game];
     const score = Number.isInteger(result.score) ? Math.max(0, Math.min(maxScore, result.score)) : 0;
-    const eligible = result.eligible === true && result.maxScore === maxScore && result.score === maxScore;
+    const eligible = result.eligible === true && result.maxScore === maxScore
+      && Number.isInteger(result.score) && result.score >= 0 && result.score <= maxScore;
     const timeMs = quantize(attempt.elapsedMs);
-    if (eligible) attempt.bestTimeMs = attempt.bestTimeMs === null ? timeMs : Math.min(attempt.bestTimeMs, timeMs);
     attempt.finished = true;
-    attempt.result = {
-      score, maxScore, eligible,
-      timeMs: eligible ? attempt.bestTimeMs : timeMs
-    };
+    attempt.result = { score, maxScore, eligible, timeMs };
     attempt.notice = '';
     attempt.noticeKind = '';
     refreshEntries();
@@ -1989,11 +1990,14 @@ const PartyResults = (() => {
     if (typeof raw.id !== 'string' || !raw.id || raw.id.length > 200) return null;
     if (typeof raw.name !== 'string' || !cleanName(raw.name)) return null;
     if (!Number.isFinite(raw.timeMs) || raw.timeMs < 0 || raw.timeMs > MAX_TIME) return null;
-    if (raw.score !== maximum[raw.game] || raw.maxScore !== maximum[raw.game]) return null;
+    if (!Number.isInteger(raw.score) || raw.score < 0 || raw.score > maximum[raw.game]
+      || raw.maxScore !== maximum[raw.game]) return null;
     if (!Number.isSafeInteger(raw.savedAt) || raw.savedAt < 0) return null;
+    const updatedAt = raw.updatedAt === undefined ? raw.savedAt : raw.updatedAt;
+    if (!Number.isSafeInteger(updatedAt) || updatedAt < raw.savedAt) return null;
     return {
       game: raw.game, id: raw.id, name: cleanName(raw.name), timeMs: quantize(raw.timeMs),
-      score: raw.score, maxScore: raw.maxScore, savedAt: raw.savedAt
+      score: raw.score, maxScore: raw.maxScore, savedAt: raw.savedAt, updatedAt
     };
   }
 
@@ -2024,8 +2028,8 @@ const PartyResults = (() => {
       const previous = combined.get(key);
       if (!previous) combined.set(key, entry);
       else {
-        const latest = entry.savedAt >= previous.savedAt ? entry : previous;
-        combined.set(key, { ...latest, timeMs: Math.min(previous.timeMs, entry.timeMs) });
+        // Keep each result's score and elapsed time together when a run is updated.
+        combined.set(key, entry.updatedAt >= previous.updatedAt ? entry : previous);
       }
     });
     // Retain the best 100 finishes per game, so the fastest results are never aged out.
@@ -2044,7 +2048,7 @@ const PartyResults = (() => {
     const attempt = attempts[game];
     const saved = currentEntry(game);
     return !!(saved && attempt.result && saved.name === cleanName(attempt.nameDraft)
-      && saved.timeMs === Math.min(saved.timeMs, attempt.result.timeMs));
+      && saved.timeMs === attempt.result.timeMs && saved.score === attempt.result.score);
   }
 
   function save(game) {
@@ -2054,7 +2058,7 @@ const PartyResults = (() => {
     attempt.nameDraft = input ? input.value : attempt.nameDraft;
     const name = cleanName(attempt.nameDraft);
     if (!name) {
-      attempt.notice = 'Enter your name to save your time, or play again without saving.';
+      attempt.notice = 'Enter your name to save your score and time, or play again without saving.';
       attempt.noticeKind = 'error';
       render(game);
       if (input) input.focus();
@@ -2065,9 +2069,10 @@ const PartyResults = (() => {
     const previous = currentEntry(game);
     const entry = {
       game, id: attempt.id, name,
-      timeMs: previous ? Math.min(previous.timeMs, attempt.result.timeMs) : attempt.result.timeMs,
+      timeMs: attempt.result.timeMs,
       score: attempt.result.score, maxScore: attempt.result.maxScore,
-      savedAt: previous ? previous.savedAt : Date.now()
+      savedAt: previous ? previous.savedAt : Date.now(),
+      updatedAt: Math.max(Date.now(), (previous ? previous.updatedAt : 0) + 1)
     };
     entries = mergeEntries(entries.filter(item => item.game !== game || item.id !== attempt.id), [entry]);
     try {
@@ -2078,7 +2083,7 @@ const PartyResults = (() => {
     }
     attempt.nameDraft = name;
     const rank = entries.filter(item => item.game === game).sort(compare).findIndex(item => item.id === attempt.id) + 1;
-    attempt.notice = rank > 0 ? 'Time saved! You are #' + rank + ' for this game.'
+    attempt.notice = rank > 0 ? 'Score and time saved! You are #' + rank + ' for this game.'
       : 'Your time is outside the fastest 100 saved runs. The leaderboard shows the top 10.';
     attempt.noticeKind = rank > 0 ? 'success' : 'incomplete';
     games.forEach(render);
@@ -2101,15 +2106,13 @@ const PartyResults = (() => {
     const button = byId(game + 'SaveScore');
     if (button) button.disabled = !result || !result.eligible || saved;
     const label = byId(game + 'SaveLabel');
-    if (label) label.textContent = saved ? 'Saved' : currentEntry(game) ? 'Update name' : 'Save my time';
+    if (label) label.textContent = saved ? 'Saved' : currentEntry(game) ? 'Update result' : 'Save my score';
     const message = byId(game + 'ResultMessage');
     if (message) {
       message.textContent = attempt.notice || (!result ? '' : !result.eligible
-        ? game === 'words'
-          ? 'Answer all 20 words correctly to join the leaderboard. Revealed answers do not count.'
-          : 'Place all 120 pieces across the 20 pictures to join the leaderboard.'
-        : saved ? 'Your time is on the leaderboard. Fastest completed games come first.'
-          : 'Add your name to join the leaderboard. Fastest completed games come first.');
+        ? 'Finish the game to save your result.'
+        : saved ? 'Your score and time are on the leaderboard. Fastest times come first.'
+          : 'Any score can be saved. Add your name to join the leaderboard; fastest times come first.');
       message.dataset.kind = attempt.noticeKind || (result && !result.eligible ? 'incomplete' : '');
     }
     renderLeaderboard(game, game);
@@ -2124,7 +2127,7 @@ const PartyResults = (() => {
       const rows = leaders.map((entry, index) => {
         const row = document.createElement('tr');
         row.className = entry.id === attempt.id ? 'current-entry' : '';
-        [String(index + 1), entry.name, formatTime(entry.timeMs, true)].forEach(value => {
+        [String(index + 1), entry.name, entry.score + ' / ' + entry.maxScore, formatTime(entry.timeMs, true)].forEach(value => {
           const cell = document.createElement('td');
           cell.textContent = value;
           row.appendChild(cell);

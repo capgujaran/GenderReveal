@@ -15,7 +15,9 @@ Choose **Scoreboard** beside the game selector at any time to view saved results
 
 Each game has its own elapsed timer. It starts on the first game action, pauses when you switch games, and stops as soon as the last answer or piece is correct. Time spent entering your name does not count. Play again or Start over begins a fresh attempt.
 
-At the end, optionally enter your name and choose **Save my time**. Each game's leaderboard shows the top 10, with the **fastest completion time first**, measured to hundredths of a second. Solve all 20 words with Submit, or complete all 20 pictures, to qualify. Picture hints are allowed; word answers shown with Reveal do not count as correct submissions. Skipped rounds cannot earn a leaderboard place.
+At the end, optionally enter your name and choose **Save my score**. Any finished result can be saved, including partial or zero scores. Each game's leaderboard shows the top 10, with the **fastest time first**, measured to hundredths of a second. Every row includes the player's score: correct words out of 20, or placed pieces out of 120. Picture hints are allowed; word answers shown with Reveal do not add to the score. Skipped rounds do not prevent saving.
+
+If you return to a finished attempt and continue playing, saving again updates the same leaderboard entry with its new score and cumulative time. Editing a name does not create a duplicate entry.
 
 Times are saved in this browser on this device and remain after a refresh. They are not shared between devices. If browser storage is unavailable, the leaderboard lasts only for the current tab. Saved results remain when the next player starts a new attempt.
 
