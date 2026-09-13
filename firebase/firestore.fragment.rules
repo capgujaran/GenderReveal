@@ -1,0 +1,192 @@
+    // Gender Reveal additions. Place inside /databases/{database}/documents.
+    // The gr prefix keeps these helpers separate from the training app's rules.
+    function grSignedIn() {
+      return request.auth != null;
+    }
+
+    function grVerifiedHost() {
+      return grSignedIn()
+        && request.auth.token.get('email', '') == 'pradeepb@icai.org'
+        && request.auth.token.get('email_verified', false) == true;
+    }
+
+    function grRoomPath(code) {
+      return /databases/$(database)/documents/genderRevealRooms/$(code);
+    }
+
+    function grRosterPath(code, uid) {
+      return /databases/$(database)/documents/genderRevealRooms/$(code)/roster/$(uid);
+    }
+
+    function grPlayerPath(code, uid) {
+      return /databases/$(database)/documents/genderRevealRooms/$(code)/players/$(uid);
+    }
+
+    function grOwnsRoom(code) {
+      return grVerifiedHost()
+        && get(grRoomPath(code)).data.hostId == request.auth.uid;
+    }
+
+    function grMember(code) {
+      return grSignedIn() && exists(grRosterPath(code, request.auth.uid));
+    }
+
+    function grValidName(name) {
+      return name is string && name.size() >= 1 && name.size() <= 24;
+    }
+
+    function grValidRoom(data, code) {
+      return data.keys().hasOnly([
+          'code', 'hostId', 'game', 'status', 'createdAt',
+          'startedAt', 'revealedAt', 'playerCount'
+        ])
+        && code.matches('^[A-Z]{6}$')
+        && data.code == code
+        && data.hostId is string
+        && data.hostId.size() > 0
+        && data.game in ['words', 'jigsaw']
+        && data.status in ['waiting', 'running', 'revealed']
+        && data.createdAt is timestamp
+        && (data.startedAt == null || data.startedAt is timestamp)
+        && (data.revealedAt == null || data.revealedAt is timestamp)
+        && data.playerCount is int
+        && data.playerCount >= 0 && data.playerCount <= 200;
+    }
+
+    function grValidRoster(data, uid) {
+      return data.keys().hasOnly(['uid', 'name', 'joinedAt'])
+        && data.uid == uid && grValidName(data.name)
+        && data.joinedAt is timestamp;
+    }
+
+    function grValidPlayer(data, uid, game) {
+      return data.keys().hasOnly([
+          'uid', 'name', 'score', 'createdAt', 'updatedAt', 'finishedAt'
+        ])
+        && data.uid == uid && grValidName(data.name)
+        && data.score is int && data.score >= 0
+        && data.score <= (game == 'words' ? 20 : 120)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp
+        && (data.finishedAt == null || data.finishedAt is timestamp);
+    }
+
+    // A join must create both identity documents and increment the count in
+    // one atomic transaction. Existing members cannot inflate playerCount.
+    function grJoiningRoom(code) {
+      let before = get(grRoomPath(code)).data;
+      let after = getAfter(grRoomPath(code)).data;
+      return grSignedIn()
+        && before.status == 'waiting' && after.status == 'waiting'
+        && before.playerCount < 200
+        && after.playerCount == before.playerCount + 1
+        && after.diff(before).affectedKeys().hasOnly(['playerCount'])
+        && !exists(grRosterPath(code, request.auth.uid))
+        && !exists(grPlayerPath(code, request.auth.uid));
+    }
+
+    function grNewRoster(code, uid) {
+      let roster = getAfter(grRosterPath(code, uid)).data;
+      return grValidRoster(roster, uid) && roster.joinedAt == request.time;
+    }
+
+    function grNewPlayer(code, uid, game) {
+      let player = getAfter(grPlayerPath(code, uid)).data;
+      let roster = getAfter(grRosterPath(code, uid)).data;
+      return grValidPlayer(player, uid, game)
+        && player.name == roster.name && player.score == 0
+        && player.createdAt == request.time
+        && player.updatedAt == request.time && player.finishedAt == null;
+    }
+
+    function grPlayHasStarted(room) {
+      return room.status == 'running'
+        && room.startedAt is timestamp
+        && request.time >= room.startedAt + duration.value(5, 's');
+    }
+
+    match /genderRevealRooms/{code} {
+      allow get: if grSignedIn();
+      // Query with where('hostId', '==', auth.currentUser.uid).
+      allow list: if grVerifiedHost() && resource.data.hostId == request.auth.uid;
+
+      allow create: if grVerifiedHost()
+        && grValidRoom(request.resource.data, code)
+        && request.resource.data.hostId == request.auth.uid
+        && request.resource.data.status == 'waiting'
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.startedAt == null
+        && request.resource.data.revealedAt == null
+        && request.resource.data.playerCount == 0;
+
+      allow update: if grValidRoom(request.resource.data, code) && (
+        (
+          grSignedIn()
+          && grJoiningRoom(code)
+          && grNewRoster(code, request.auth.uid)
+          && grNewPlayer(code, request.auth.uid, resource.data.game)
+        ) || (
+          grVerifiedHost() && resource.data.hostId == request.auth.uid
+          && resource.data.status == 'waiting'
+          && resource.data.playerCount > 0
+          && request.resource.data.diff(resource.data).affectedKeys()
+            .hasOnly(['status', 'startedAt'])
+          && request.resource.data.status == 'running'
+          && request.resource.data.startedAt == request.time
+        ) || (
+          grVerifiedHost() && resource.data.hostId == request.auth.uid
+          && grPlayHasStarted(resource.data)
+          && request.resource.data.diff(resource.data).affectedKeys()
+            .hasOnly(['status', 'revealedAt'])
+          && request.resource.data.status == 'revealed'
+          && request.resource.data.revealedAt == request.time
+        )
+      );
+      allow delete: if false;
+
+      match /roster/{uid} {
+        // The owner can check whether they have already joined before join.
+        allow get: if (grSignedIn() && request.auth.uid == uid)
+          || grOwnsRoom(code) || grMember(code);
+        allow list: if grOwnsRoom(code) || grMember(code);
+        allow create: if grSignedIn() && request.auth.uid == uid
+          && grJoiningRoom(code)
+          && grNewRoster(code, uid)
+          && grNewPlayer(code, uid, get(grRoomPath(code)).data.game);
+        allow update, delete: if false;
+      }
+
+      match /players/{uid} {
+        // No opponent scores or completion times are readable before reveal.
+        allow get: if (grSignedIn() && request.auth.uid == uid)
+          || grOwnsRoom(code)
+          || (grMember(code) && get(grRoomPath(code)).data.status == 'revealed');
+        allow list: if grOwnsRoom(code)
+          || (grMember(code) && get(grRoomPath(code)).data.status == 'revealed');
+        allow create: if grSignedIn() && request.auth.uid == uid
+          && grJoiningRoom(code)
+          && grNewRoster(code, uid)
+          && grNewPlayer(code, uid, get(grRoomPath(code)).data.game);
+        allow update: if grSignedIn() && request.auth.uid == uid
+          && grMember(code)
+          && grPlayHasStarted(getAfter(grRoomPath(code)).data)
+          && resource.data.finishedAt == null
+          && grValidPlayer(request.resource.data, uid, get(grRoomPath(code)).data.game)
+          && request.resource.data.diff(resource.data).affectedKeys()
+            .hasOnly(['score', 'updatedAt', 'finishedAt'])
+          && request.resource.data.score >= resource.data.score
+          && request.resource.data.updatedAt == request.time
+          && (request.resource.data.finishedAt == null
+            || request.resource.data.finishedAt == request.time);
+        allow delete: if false;
+      }
+    }
+
+    // Used only to measure clock offset; it grants no ability to set a result time.
+    match /genderRevealClocks/{uid} {
+      allow get: if grSignedIn() && request.auth.uid == uid;
+      allow create, update: if grSignedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['at'])
+        && request.resource.data.at == request.time;
+      allow list, delete: if false;
+    }

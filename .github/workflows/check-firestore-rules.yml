@@ -1,0 +1,43 @@
+name: Check Firestore rules
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'firebase/**'
+      - '.github/workflows/check-firestore-rules.yml'
+  pull_request:
+    paths:
+      - 'firebase/**'
+      - '.github/workflows/check-firestore-rules.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  firestore-rules:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: firebase
+    env:
+      CI: 'true'
+      FIREBASE_CLI_DISABLE_UPDATE_CHECK: 'true'
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Set up Java for the Firestore emulator
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Install pinned test dependencies
+        run: npm install --no-audit --no-fund --package-lock=false
+      - name: Compile and test rules against the local emulator
+        run: npm test

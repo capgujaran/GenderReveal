@@ -1,7 +1,7 @@
 /* Shared party rooms. Results come only from the server, never a local leaderboard. */
 (() => {
   'use strict';
-  const SESSION_KEY = 'genderReveal.liveParticipant.v1';
+  const SESSION_KEY = 'genderReveal.liveParticipant.v2';
   const HOST_EMAIL = 'pradeepb@icai.org';
   const GAME_NAMES = { words: 'Baby Word Scramble', jigsaw: 'Baby Picture Puzzles' };
   const FINISH_MESSAGE = "You have completed! Let's wait for the host to announce the winner of an AED 100 Amazing gift voucher. All the best!";
@@ -10,11 +10,12 @@
     busy: false, finishing: null, booting: false, serverOffset: 0,
     pollTimer: null, snapshotTimer: null, progressTimer: null, clockTimer: null,
     hostPollTimer: null, hostRooms: [], hostRoom: null, hostBusy: false,
-    hostCodeSent: false, hostEmail: '', hostViewVersion: 0, lastProgress: 0, connectionMessage: ''
+    hostViewVersion: 0, lastProgress: 0, connectionMessage: ''
   };
   const el = id => document.getElementById(id);
   const api = () => window.PartyApi;
   const bridge = () => window.PartyGameBridge;
+  const projectIdentity = () => 'firebase:' + (window.PARTY_CONFIG?.firebase?.projectId || '');
   const now = () => Date.now() + state.serverOffset;
   const validCode = value => /^[A-Z]{6}$/.test(value);
   const codeOf = value => String(value || '').replace(/\s/g, '').toUpperCase();
@@ -32,8 +33,8 @@
   function readMember() {
     try {
       const value = JSON.parse(localStorage.getItem(SESSION_KEY));
-      if (!value || value.project !== window.PARTY_CONFIG.supabaseUrl || !validCode(value.code)
-        || typeof value.token !== 'string' || value.token.length < 32 || value.token.length > 256
+      if (!value || value.project !== projectIdentity() || !validCode(value.code)
+        || typeof value.token !== 'string' || value.token.length < 9 || value.token.length > 256
         || !Object.hasOwn(GAME_NAMES, value.game)) return null;
       return value;
     } catch (_) { return null; }
@@ -90,11 +91,11 @@
     dialogs.innerHTML = `
       <dialog class="party-dialog" id="partyHostDialog" aria-labelledby="partyHostTitle">
         <div class="dialog-header"><h2 id="partyHostTitle">Host control</h2><button class="close-btn" id="partyHostClose" type="button" aria-label="Close host control"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
-        <section id="partyHostSignIn"><p>Enter your host ID. A sign-in code sent to your email protects the Start and Reveal controls.</p>
-          <form id="partyHostForm" class="party-form"><label>Host ID<input id="partyHostEmail" type="email" autocomplete="username" placeholder="Your host email" required></label><label id="partyHostOtpLabel" hidden>Email sign-in code<input id="partyHostOtp" inputmode="numeric" autocomplete="one-time-code" maxlength="10" minlength="6"></label><button class="party-button primary" id="partyHostSignInButton" type="submit">Send sign-in code</button></form>
-          <button class="party-button" id="partyHostChangeId" type="button" hidden>Use another ID</button>
+        <section id="partyHostSignIn"><p>Enter your host ID and sign in with your Power BI training account.</p>
+          <form id="partyHostForm" class="party-form"><label>Host ID<input id="partyHostEmail" type="email" autocomplete="username" placeholder="Your host email" required></label><label>Password<input id="partyHostPassword" type="password" autocomplete="current-password" required></label><button class="party-button primary" id="partyHostSignInButton" type="submit">Sign in</button></form>
+          <div class="party-actions"><button class="party-button blue" id="partyHostGoogle" type="button">Sign in with Google</button><button class="party-button" id="partyHostResetPassword" type="button">Forgot password?</button></div>
         </section>
-        <section class="party-setup" id="partyHostSetup" hidden><p><strong>Live hosting needs its shared database connection.</strong></p><p>The host screens and game-room code are ready. Complete the Supabase setup, then add the public project URL and publishable key to party-config.js.</p><a href="https://github.com/capgujaran/GenderReveal/blob/main/supabase/README.md" target="_blank" rel="noopener">Open host setup instructions</a></section>
+        <section class="party-setup" id="partyHostSetup" hidden><p><strong>Live hosting needs its Firebase connection.</strong></p><p>Add the same Firebase configuration used by your Power BI site and publish the game access rules to enable shared rooms.</p><a href="https://github.com/capgujaran/GenderReveal/blob/main/firebase/README.md" target="_blank" rel="noopener">Open host setup instructions</a></section>
         <section id="partyHostDashboard" hidden>
           <p>Generate a code, invite players, and press Start when everyone has joined. Scores become public only when you choose Reveal winner.</p>
           <form id="partyCreateForm" class="party-form"><label>Choose a game<select id="partyHostGame"><option value="words">Game 1 · Baby Word Scramble</option><option value="jigsaw">Game 2 · Baby Picture Puzzles</option></select></label><button type="submit" class="party-button blue" id="partyCreateCode">Generate game code</button></form>
@@ -246,7 +247,7 @@
     state.busy = true; el('partyJoinSubmit').disabled = true; message('partyJoinMessage', 'Joining your game…');
     try {
       const result = await rpc('party_join', { p_code: code, p_name: name });
-      state.member = { project: window.PARTY_CONFIG.supabaseUrl, code, token: result.token,
+      state.member = { project: projectIdentity(), code, token: result.token,
         game: result.room.game, name: result.room.self.name, snapshot: null, pendingScore: null };
       state.begun = false; state.lastProgress = 0; applyRoom(result.room); schedulePoll();
       const url = new URL(location.href); url.searchParams.set('game', code); history.replaceState(null, '', url.href);
@@ -317,12 +318,14 @@
   function renderHost() {
     const signedIn = state.ready && api().hostSignedIn();
     show('partyHostSignIn', !signedIn); show('partyHostDashboard', signedIn); show('partyHostSetup', !state.ready);
-    el('partyHostSignInButton').disabled = !state.ready || state.hostBusy;
-    el('partyHostSignInButton').textContent = state.hostCodeSent ? 'Verify sign-in code' : 'Send sign-in code';
-    show('partyHostOtpLabel', state.hostCodeSent); show('partyHostChangeId', state.hostCodeSent);
-    el('partyHostEmail').readOnly = state.hostCodeSent; el('partyHostOtp').required = state.hostCodeSent;
+    ['partyHostSignInButton', 'partyHostGoogle', 'partyHostResetPassword'].forEach(id => {
+      el(id).disabled = !state.ready || state.hostBusy;
+    });
+    el('partyHostEmail').readOnly = state.hostBusy;
+    el('partyHostPassword').readOnly = state.hostBusy;
     if (!signedIn) return;
     el('partyCreateCode').disabled = state.hostBusy;
+    el('partyHostSignOut').disabled = state.hostBusy;
     el('partyHostGames').replaceChildren(...state.hostRooms.map(room => {
       const button = document.createElement('button'); button.type = 'button'; button.className = 'party-host-game' + (room.code === state.hostRoom?.code ? ' selected' : '');
       const code = document.createElement('strong'); code.textContent = room.code;
@@ -343,16 +346,21 @@
   }
 
   async function refreshHost() {
-    if (!state.ready || !api().hostSignedIn() || !el('partyHostDialog').open) return;
+    if (!state.ready || !el('partyHostDialog').open) return;
+    if (!api().hostSignedIn()) {
+      state.hostRooms = []; state.hostRoom = null; renderHost(); return;
+    }
     const version = state.hostViewVersion;
     try {
       const rooms = await rpc('party_host_rooms', {}, true);
-      if (version !== state.hostViewVersion || !api().hostSignedIn()) return;
+      if (version !== state.hostViewVersion) return;
+      if (!api().hostSignedIn()) { state.hostRooms = []; state.hostRoom = null; renderHost(); return; }
       state.hostRooms = Array.isArray(rooms) ? rooms : [];
       const code = state.hostRoom?.code || state.hostRooms[0]?.code;
       if (code) {
         const room = await rpc('party_host_view', { p_code: code }, true);
-        if (version !== state.hostViewVersion || !api().hostSignedIn()) return;
+        if (version !== state.hostViewVersion) return;
+        if (!api().hostSignedIn()) { state.hostRooms = []; state.hostRoom = null; renderHost(); return; }
         state.hostRoom = room;
       }
       renderHost();
@@ -374,20 +382,40 @@
     finally { if (version === state.hostViewVersion) { state.hostBusy = false; renderHost(); } }
   }
 
-  async function hostSignIn(event) {
+  async function hostSignIn(event, method = 'password') {
     event.preventDefault(); if (!state.ready || state.hostBusy) return;
     const email = el('partyHostEmail').value.trim().toLowerCase();
     if (email !== HOST_EMAIL) { message('partyHostMessage', 'This ID is not authorized to host this party.'); return; }
     state.hostBusy = true; renderHost(); message('partyHostMessage', '');
     try {
-      if (!state.hostCodeSent) {
-        await api().requestHostCode(email); state.hostCodeSent = true; state.hostEmail = email;
-        message('partyHostMessage', 'Check your email for the sign-in code.'); renderHost(); el('partyHostOtp').focus();
-      } else {
-        await api().verifyHostCode(state.hostEmail, el('partyHostOtp').value.trim());
-        state.hostCodeSent = false; el('partyHostOtp').value = ''; message('partyHostMessage', 'Signed in. Generate a code to invite players.');
-        await refreshHost();
-      }
+      if (method === 'google') await api().signInHostWithGoogle(email);
+      else await api().signInHost(email, el('partyHostPassword').value);
+      message('partyHostMessage', 'Signed in. Generate a code to invite players.');
+      await refreshHost();
+    } catch (error) { message('partyHostMessage', error); }
+    finally { el('partyHostPassword').value = ''; state.hostBusy = false; renderHost(); }
+  }
+
+  async function resetHostPassword() {
+    if (!state.ready || state.hostBusy) return;
+    const email = el('partyHostEmail').value.trim().toLowerCase();
+    if (email !== HOST_EMAIL) { message('partyHostMessage', 'Enter your authorized host ID first.'); return; }
+    state.hostBusy = true; renderHost(); message('partyHostMessage', '');
+    try {
+      await api().sendHostPasswordReset(email);
+      message('partyHostMessage', 'Check your email for a password reset link.');
+    } catch (error) { message('partyHostMessage', error); }
+    finally { state.hostBusy = false; renderHost(); }
+  }
+
+  async function openHost() {
+    renderHost(); el('partyHostDialog').showModal();
+    if (!state.ready) return;
+    state.hostBusy = true; renderHost(); message('partyHostMessage', 'Connecting…');
+    try {
+      await api().whenReady();
+      message('partyHostMessage', '');
+      await refreshHost();
     } catch (error) { message('partyHostMessage', error); }
     finally { state.hostBusy = false; renderHost(); }
   }
@@ -422,12 +450,21 @@
       if (state.member) { showScoreboard(); return; }
       el('partyEntryScreen').scrollIntoView({ block: 'center', behavior: 'smooth' }); el('partyJoinCode').focus();
     });
-    el('partyHostLaunch').addEventListener('click', () => { renderHost(); el('partyHostDialog').showModal(); refreshHost(); });
+    el('partyHostLaunch').addEventListener('click', openHost);
     el('partyHostClose').addEventListener('click', () => el('partyHostDialog').close());
     el('partyHostDialog').addEventListener('close', () => { clearTimeout(state.hostPollTimer); el('partyHostLaunch').focus({ preventScroll: true }); });
-    el('partyHostForm').addEventListener('submit', hostSignIn);
-    el('partyHostChangeId').addEventListener('click', () => { state.hostCodeSent = false; el('partyHostOtp').value = ''; message('partyHostMessage', ''); renderHost(); });
-    el('partyHostSignOut').addEventListener('click', async () => { state.hostViewVersion += 1; await api().signOut(); state.hostBusy = false; state.hostRooms = []; state.hostRoom = null; clearTimeout(state.hostPollTimer); message('partyHostMessage', 'Signed out.'); renderHost(); });
+    el('partyHostForm').addEventListener('submit', event => hostSignIn(event));
+    el('partyHostGoogle').addEventListener('click', event => hostSignIn(event, 'google'));
+    el('partyHostResetPassword').addEventListener('click', resetHostPassword);
+    el('partyHostSignOut').addEventListener('click', async () => {
+      if (state.hostBusy) return;
+      state.hostViewVersion += 1; state.hostBusy = true; renderHost();
+      try {
+        await api().signOut(); state.hostRooms = []; state.hostRoom = null;
+        clearTimeout(state.hostPollTimer); message('partyHostMessage', 'Signed out.');
+      } catch (error) { message('partyHostMessage', error); }
+      finally { state.hostBusy = false; renderHost(); }
+    });
     el('partyCreateForm').addEventListener('submit', async event => {
       event.preventDefault(); if (state.hostBusy) return;
       const version = ++state.hostViewVersion;

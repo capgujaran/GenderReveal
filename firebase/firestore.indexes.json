@@ -1,0 +1,13 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "genderRevealRooms",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "hostId", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
