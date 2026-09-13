@@ -2,7 +2,7 @@
 const path=require('node:path'),fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
 const html=fs.readFileSync(path.join(__dirname,'..','index.html'),'utf8');
 let checks=0;function check(condition,label){assert.ok(condition,label);checks++;}
-function newApp(){
+function newApp({storage=new Map()}={}){
 const idMap=new Map(),callbacks=[],intervals=[];let clock=0,hosted=false,allow=true,started=false,elapsed=null,switchAllowed=true,events=0,lastEvent=null,showCalls=0,blocked=false;
 class E{
  constructor(tag='div'){this.tagName=tag.toUpperCase();this.children=[];this.dataset={};this.style={setProperty(k,v){this[k]=v;}};this.attributes={};this.listeners={};this.hidden=false;this.disabled=false;this.open=false;this.value='';this.scrollTop=0;this.clientHeight=400;this.scrollHeight=1000;this.parentElement=null;this._class='';this._text='';const self=this;this.classList={add(...xs){let z=new Set(self._class.split(' ').filter(Boolean));xs.forEach(x=>z.add(x));self._class=[...z].join(' ');},remove(...xs){self._class=self._class.split(' ').filter(x=>!xs.includes(x)).join(' ');},toggle(x,f){const val=f===undefined?!this.contains(x):f;val?this.add(x):this.remove(x);return val;},contains(x){return self._class.split(' ').includes(x);}};}
@@ -17,7 +17,7 @@ class E{
 }
 const body=new E('body');for(const m of html.matchAll(/<([\w-]+)\b([^>]*\bid="([^"]+)"[^>]*)>/g)){const e=new E(m[1]);e.setAttribute('id',m[3]);for(const a of m[2].matchAll(/([\w-]+)="([^"]*)"/g))e.setAttribute(a[1],a[2]);body.append(e);}
 idMap.get('jigsawProgress').parentElement.setAttribute('role','progressbar');const preview=new E('span');preview.setAttribute('data-preview-label','');idMap.get('previewButton').append(preview);
-const docListeners={};const winListeners={};const local=new Map();
+const docListeners={};const winListeners={};const local=storage;
 const document={body,documentElement:new E('html'),getElementById:id=>idMap.get(id)||null,createElement:t=>new E(t),createElementNS:(_,t)=>new E(t),addEventListener(n,cb){(docListeners[n]??=[]).push(cb);},querySelector:sel=>body.querySelector(sel),querySelectorAll:sel=>body.querySelectorAll(sel),elementFromPoint(){return null;}};
 const LiveParty={canInteract:()=>allow,canSwitch:()=>switchAllowed,isMatch:()=>hosted,elapsedFor:()=>elapsed,blocksGameInput:()=>blocked,onGameRender(game,result){events++;lastEvent={game,result};},showScoreboard(){showCalls++;}};
 const window={LiveParty,addEventListener(n,cb){(winListeners[n]??=[]).push(cb);}};
@@ -66,4 +66,54 @@ app.el('pieceTray').dispatch('click',{target:app.el('pieceTray').children[0],det
 app.el('boardSlots').dispatch('click',{target:app.el('boardSlots').children[5],detail:0});
 check(app.bridge.score('jigsaw').score===120&&app.getEvent().result.finished,'Final real piece placement automatically emits completed 120-piece score');
 app.set({hosted:false,allow:true,elapsed:null,switchAllowed:true});app.run('startGame();switchGame("words");hint();');check(app.bridge.score('words').score===0&&app.bridge.snapshot('words').states[0].hint,'Standalone play works after leaving hosted room');
-console.log(`${checks} hosted bridge checks passed.`);
+// Legacy v1 saves are deliberately in the old time-first order. Slow full scores
+// occur beyond the 100-run retention limit, so ranking must precede truncation.
+const leaderboardKey='genderReveal.leaderboard.v1';
+const oldEntries=['words','jigsaw'].flatMap(game=>{
+ const maxScore=game==='words'?20:120;
+ const make=(id,name,score,timeMs)=>({game,id:game+'-'+id,name,score,maxScore,timeMs,savedAt:1000,updatedAt:1000});
+ return [
+  ...Array.from({length:103},(_,i)=>make('quick-'+i,'Quick partial '+i,maxScore-5,1000+i*10)),
+  make('best-fast','Best faster',maxScore,100000),
+  make('best-slow','Best slower',maxScore,200000)
+ ];
+});
+const oldStorageValue=JSON.stringify({version:1,entries:oldEntries});
+const localApp=newApp({storage:new Map([[leaderboardKey,oldStorageValue]])});
+const localNames=body=>body.children.map(row=>row.children[1].textContent);
+for(const game of ['words','jigsaw']){
+ const body=localApp.el(game+'LeaderboardBody');
+ check(body.children.length===10,'Existing '+game+' leaderboard still displays top 10');
+ check(localNames(body).slice(0,3).join('|')==='Best faster|Best slower|Quick partial 0',
+  'Existing '+game+' finish board puts full scores before quicker partial scores and breaks equal scores by time');
+}
+localApp.el('scoreboardButton').dispatch('click');
+for(const button of ['scoreboardWordsButton','scoreboardJigsawButton']){
+ localApp.el(button).dispatch('click');
+ check(localNames(localApp.el('scoreboardLeaderboardBody')).slice(0,3).join('|')==='Best faster|Best slower|Quick partial 0',
+  button+' uses score-first order for previously saved results');
+}
+check(localApp.local.get(leaderboardKey)===oldStorageValue,'Reading and reordering existing saves requires no migration or storage rewrite');
+localApp.el('scoreboardBackButton').dispatch('click');
+for(const game of ['words','jigsaw']){
+ const maxScore=game==='words'?20:120;
+ // Exercise the result controller, name form, persisted save, rank notice and
+ // both rendered boards; use a slower new score to distinguish rank from time.
+ localApp.run('PartyResults.reset('+JSON.stringify(game)+');switchGame('+JSON.stringify(game)+');PartyResults.start('+JSON.stringify(game)+');');
+ localApp.tick(300000);
+ localApp.run('PartyResults.finish('+JSON.stringify(game)+',{score:'+(maxScore-4)+',maxScore:'+maxScore+',eligible:true})');
+ localApp.el(game+'PlayerName').value='New partial';
+ localApp.el(game+'NameForm').dispatch('submit');
+ check(localNames(localApp.el(game+'LeaderboardBody')).slice(0,4).join('|')==='Best faster|Best slower|New partial|Quick partial 0',
+  'Saving '+game+' keeps slower higher score above faster lower scores');
+ check(localApp.el(game+'ResultMessage').textContent.includes('#3'),'Saved '+game+' notice uses score-first rank');
+ const saved=JSON.parse(localApp.local.get(leaderboardKey));
+ const gameEntries=saved.entries.filter(entry=>entry.game===game);
+ check(saved.version===1&&gameEntries.length===100&&gameEntries[0].name==='Best faster'&&gameEntries[2].name==='New partial',
+  'Saving '+game+' retains best 100 using existing schema');
+ localApp.el('scoreboardButton').dispatch('click');
+ check(localNames(localApp.el('scoreboardLeaderboardBody')).slice(0,4).join('|')==='Best faster|Best slower|New partial|Quick partial 0',
+  'Direct '+game+' scoreboard immediately matches saved result ranking');
+ localApp.el('scoreboardBackButton').dispatch('click');
+}
+console.log(`${checks} game bridge and local leaderboard checks passed.`);

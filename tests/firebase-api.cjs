@@ -190,7 +190,11 @@ async function rejects(promise, expression) { await assert.rejects(promise, expr
   await tick();
   const publicResults = await second.api.rpc('party_view', { p_code: room.code, p_token: joined2.token });
   check(publicResults.status === 'revealed' && publicResults.players.length === 2 && publicResults.players.every(item => typeof item.score === 'number'), 'all participants receive full scores after reveal');
-  check([...publicResults.players].sort((a,b) => a.time_ms - b.time_ms)[0].id === joined.room.self.id, 'fastest partial score remains first when ranked by time');
+  const revealedPartial = publicResults.players.find(player => player.id === joined.room.self.id);
+  const revealedFull = publicResults.players.find(player => player.id === joined2.room.self.id);
+  check(revealedPartial.score === 16 && revealedPartial.time_ms === 1500
+    && revealedFull.score === 20 && revealedFull.time_ms === 2700,
+    'reveal preserves each score and its authoritative elapsed time for frontend ranking');
   const postRevealRetry = await empty.api.rpc('party_finish', { p_code: room.code, p_token: joined.token, p_score: 20 });
   check(postRevealRetry.self.time_ms === 1500, 'finish safely retries after reveal');
   const list = await empty.api.rpc('party_host_rooms', {}, { host: true });

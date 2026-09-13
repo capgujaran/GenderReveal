@@ -6,7 +6,7 @@ A pink-and-blue party game website with two illustrated games. The website runs 
 
 Choose **Host** and sign in with the verified **pradeepb@icai.org** account using its email and password or Google, as on the Power BI training site. Generate a random game code for Word Scramble or Picture Puzzles and share the invite link. Players enter their names and join a waiting room; Firebase signs them in anonymously without asking them to create an account. **Start game** begins a five-second countdown and unlocks play for everyone together.
 
-Players finish with: “You have completed! Let's wait for the host to announce the winner of an AED 100 Amazing gift voucher. All the best!” Their final result is submitted automatically. Other players' scores stay hidden until the host chooses **Reveal winner**. Everyone then sees all results, with the fastest finished player first and unfinished entries last. Partial scores remain eligible.
+Players finish with: “You have completed! Let's wait for the host to announce the winner of an AED 100 Amazing gift voucher. All the best!” Their final result is submitted automatically. Other players' scores stay hidden until the host chooses **Reveal winner**. Everyone then sees all results, with submitted results ranked by most correct answers first, then shortest completion time for equal scores. Unfinished entries appear last and are unranked. Partial scores remain eligible.
 
 Hosted games use Cloud Firestore for room state, server timestamps, and private results. The game stores its data in separate `genderRevealRooms` and `genderRevealClocks` collections. Named Firebase app instances keep game sign-in sessions separate from the training app. Firestore rules restrict host actions to the verified host account and keep other players' results private until the host reveals them.
 
@@ -27,7 +27,7 @@ Choose **Scoreboard** beside the game selector at any time to view saved results
 
 Each game has its own elapsed timer. It starts on the first game action, pauses when you switch games, and stops as soon as the last answer or piece is correct. Time spent entering your name does not count. Play again or Start over begins a fresh attempt.
 
-At the end, optionally enter your name and choose **Save my score**. Any finished result can be saved, including partial or zero scores. Each game's leaderboard shows the top 10, with the **fastest time first**, measured to hundredths of a second. Every row includes the player's score: correct words out of 20, or placed pieces out of 120. Picture hints are allowed; word answers shown with Reveal do not add to the score. Skipped rounds do not prevent saving.
+At the end, optionally enter your name and choose **Save my score**. Any finished result can be saved, including partial or zero scores. Each game's leaderboard shows the top 10, with the **most correct answers first**. For equal scores, the **fastest time wins**, measured to hundredths of a second. For example, 20 correct answers in 6 minutes ranks above 16 correct in 3 minutes; among two players with 20 correct, 5 minutes beats 6 minutes. Every row includes the player's score: correct words out of 20, or placed pieces out of 120. Picture hints are allowed; word answers shown with Reveal do not add to the score. Skipped rounds do not prevent saving.
 
 If you return to a finished attempt and continue playing, saving again updates the same leaderboard entry with its new score and cumulative time. Editing a name does not create a duplicate entry.
 

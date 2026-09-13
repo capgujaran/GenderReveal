@@ -73,7 +73,7 @@
       <p class="party-connection" id="partyConnection" role="status" hidden></p>
       <section class="party-surface" id="partyEntryScreen" aria-labelledby="partyEntryTitle" hidden>
         <p class="party-eyebrow">Boy or girl? Let the party begin.</p><h2 id="partyEntryTitle">You're invited to play.</h2>
-        <p>Enter the code from your host, choose your name, and join the waiting room.</p>
+        <p>Enter the code from your host, choose your name, and join the waiting room. Most correct answers win; fastest time breaks a tie.</p>
         <form id="partyJoinForm" class="party-form"><label>Game code<input class="party-code-input" id="partyJoinCode" maxlength="6" minlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false" required></label><label>Your name<input id="partyJoinName" maxlength="24" autocomplete="nickname" required></label><button class="party-button primary" id="partyJoinSubmit" type="submit">Join game</button></form>
         <p class="party-status" id="partyJoinMessage" role="status"></p>
       </section>
@@ -97,7 +97,7 @@
         </section>
         <section class="party-setup" id="partyHostSetup" hidden><p><strong>Live hosting needs its Firebase connection.</strong></p><p>Add the same Firebase configuration used by your Power BI site and publish the game access rules to enable shared rooms.</p><a href="https://github.com/capgujaran/GenderReveal/blob/main/firebase/README.md" target="_blank" rel="noopener">Open host setup instructions</a></section>
         <section id="partyHostDashboard" hidden>
-          <p>Generate a code, invite players, and press Start when everyone has joined. Scores become public only when you choose Reveal winner.</p>
+          <p>Generate a code, invite players, and press Start when everyone has joined. Scores become public only when you choose Reveal winner. Most correct answers win; fastest time breaks a tie.</p>
           <form id="partyCreateForm" class="party-form"><label>Choose a game<select id="partyHostGame"><option value="words">Game 1 · Baby Word Scramble</option><option value="jigsaw">Game 2 · Baby Picture Puzzles</option></select></label><button type="submit" class="party-button blue" id="partyCreateCode">Generate game code</button></form>
           <div class="party-host-layout"><nav class="party-host-games" id="partyHostGames" aria-label="Your game rooms"></nav><section class="party-host-details" id="partyHostDetails" hidden><h3 id="partyHostGameTitle"></h3><strong class="party-code" id="partyHostCode"></strong><p id="partyHostRoomStatus"></p><input class="party-share-input" id="partyHostShareLink" readonly aria-label="Player join link"><div class="party-actions"><button class="party-button" id="partyCopyLink" type="button">Copy invite link</button><button class="party-button blue" id="partyHostStart" type="button">Start game</button><button class="party-button primary" id="partyHostReveal" type="button">Reveal winner</button></div><div id="partyHostPlayers"></div></section></div>
           <div class="party-actions"><button type="button" class="party-button" id="partyHostSignOut">Sign out</button></div>
@@ -108,7 +108,9 @@
   }
 
   function sortedPlayers(room) {
+    // Submitted results rank by correct answers first, with elapsed time breaking ties.
     return [...(room.players || [])].sort((a, b) => Number(b.finished) - Number(a.finished)
+      || Number(b.score ?? 0) - Number(a.score ?? 0)
       || (a.finished && b.finished ? Number(a.time_ms) - Number(b.time_ms) : 0));
   }
 
@@ -131,7 +133,7 @@
     }
     const scroll = document.createElement('div'); scroll.className = 'party-result-scroll';
     const table = document.createElement('table'); table.className = 'party-results';
-    const caption = document.createElement('caption'); caption.className = 'sr-only'; caption.textContent = host && room.status !== 'revealed' ? 'Private host player progress' : 'All players, fastest finished time first';
+    const caption = document.createElement('caption'); caption.className = 'sr-only'; caption.textContent = host && room.status !== 'revealed' ? 'Private host player progress' : 'Submitted results ranked by most correct answers, then shortest completion time';
     const head = document.createElement('thead'); const heading = document.createElement('tr');
     ['Rank', 'Player', 'Score', 'Time'].forEach(text => { const cell = document.createElement('th'); cell.scope = 'col'; cell.textContent = text; heading.append(cell); });
     head.append(heading); const body = document.createElement('tbody');
@@ -173,7 +175,7 @@
     if (state.phase === 'countdown') { title = 'Get ready!'; text = 'Everyone starts together. Your game will open automatically.'; }
     if (state.phase === 'saving' || state.phase === 'finish-error') { title = 'You have completed!'; text = state.phase === 'saving' ? 'Saving your result. Please keep this page open.' : 'Your result is waiting to be saved. Reconnect and tap Retry saving result.'; }
     if (state.phase === 'finished') { title = 'You have completed!'; text = FINISH_MESSAGE.replace('You have completed! ', ''); }
-    if (state.phase === 'revealed') { title = 'The results are in!'; text = 'Thank you for playing. Here are everyone’s scores, with the fastest finisher on top.'; }
+    if (state.phase === 'revealed') { title = 'The results are in!'; text = 'Thank you for playing. Most correct answers come first. Fastest time breaks a tie.'; }
     if (state.phase === 'reconnecting') { title = 'Finding your game…'; text = 'Reconnecting to your party. Your game will resume automatically.'; }
     if (state.phase === 'entry-error') { title = 'Please rejoin the party'; text = 'This saved game entry is no longer available. Ask your host for the current code and join again.'; }
     setText('partyRoomTitle', title); setText('partyRoomMessage', text);

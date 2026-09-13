@@ -52,7 +52,7 @@ Wait for the index to finish building before loading the host's room history.
 2. Choose a game and generate its six-letter code. Share the link and code with guests.
 3. Each guest enters the code and a name. Guests wait in the room until the host clicks **Start**. Joining closes when the host starts; all players receive a five-second countdown.
 4. Guests play and submit their result. Partial scores and zero scores can finish. Completion time comes from Firestore server timestamps. Guests see the waiting message for the **AED 100 Amazing gift voucher** while results remain hidden.
-5. Click **Reveal winner** when ready. Everyone who joined can then see all scores, with completed entries ordered by fastest time. Revealing closes further scoring; unfinished guests remain listed without a finishing time.
+5. Click **Reveal winner** when ready. Everyone who joined can then see all scores, with submitted entries ordered by most correct answers first and shortest completion time breaking score ties. For example, 20 correct in 6 minutes beats 16 correct in 3 minutes; at 20 correct each, 5 minutes beats 6 minutes. Revealing closes further scoring; unfinished guests remain listed without a finishing time.
 
 Each room holds up to 200 guests. For another round, generate a new code. Guest identity belongs to the browser's Firebase anonymous session, so guests should keep using the same browser and device during a round.
 

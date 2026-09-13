@@ -31,6 +31,34 @@ async function click(app,id){app.el(id).dispatch('click');await flush();}async f
 async function createRoom(host,game='words'){await click(host,'partyHostLaunch');host.el('partyHostEmail').value='pradeepb@icai.org';host.el('partyHostPassword').value='mock-password';await submit(host,'partyHostForm');host.el('partyHostGame').value=game;await submit(host,'partyCreateForm');return host.el('partyHostCode').textContent;}
 async function joinPlayer(app,code,name){app.el('partyJoinCode').value=code;app.el('partyJoinName').value=name;await submit(app,'partyJoinForm');}
 function solve(app,score=20){const saved=app.bridge.snapshot('words');const words=JSON.parse(app.run('JSON.stringify(WORDS)'));saved.index=19;saved.finished=false;for(let i=0;i<saved.states.length;i++){const s=saved.states[i],used=new Set();if(i<score){s.arrangement=[...words[i]].map(letter=>{const n=[...s.scrambled].findIndex((c,j)=>c===letter&&!used.has(j));used.add(n);return n;});s.checked=true;s.revealed=true;s.hint=true;s.submission='correct';}}if(score===20){saved.states[19].checked=false;saved.states[19].revealed=false;saved.states[19].submission=null;}app.bridge.begin('words',saved);if(score===20)app.run('WordArrange.submit()');else app.run('next()');}
+function prepareScore(app,game,score){
+ const saved=app.bridge.snapshot(game);saved.index=19;saved.finished=false;
+ if(game==='jigsaw'){
+  for(let i=0;i<saved.states.length;i++)saved.states[i].placed=Array.from({length:Math.min(6,Math.max(0,score-i*6))},(_,piece)=>piece);
+ }else{
+  const words=JSON.parse(app.run('JSON.stringify(WORDS)'));
+  for(let i=0;i<score;i++){
+   const state=saved.states[i],used=new Set();
+   state.arrangement=[...words[i]].map(letter=>{const id=[...state.scrambled].findIndex((c,j)=>c===letter&&!used.has(j));used.add(id);return id;});
+   state.checked=true;state.revealed=true;state.hint=true;state.submission='correct';
+  }
+ }
+ app.bridge.begin(game,saved);
+}
+function finishScore(app,game,score){
+ if(game==='words'){solve(app,score);return;}
+ prepareScore(app,game,Math.min(score,119));
+ if(score===120){
+  app.el('pieceTray').dispatch('click',{target:app.el('pieceTray').children[0],detail:0});
+  app.el('boardSlots').dispatch('click',{target:app.el('boardSlots').children[5],detail:0});
+ }else app.run('Jigsaw.next()');
+}
+function checkRevealedRanking(container,label){
+ const rows=container.querySelector('tbody').children;
+ check(rows.map(row=>row.children[1].textContent).join('|')==='Full faster|Full slower|Quick partial|Still playing',label+' ranks score first, then equal-score time');
+ check(rows[3].children[0].textContent==='—'&&rows[3].children[3].textContent==='Not finished',label+' keeps unfinished high progress unranked');
+ check(container.querySelector('.party-winner').textContent.includes('Full faster'),label+' announces the highest-score fastest tied finisher');
+}
 (async()=>{
 const scheduler=new Scheduler(),server=new Server(scheduler);const host=newApp({scheduler,server}),one=newApp({scheduler,server}),two=newApp({scheduler,server});
 await click(host,'partyHostLaunch');
@@ -63,7 +91,7 @@ await scheduler.advance(10000);server.failFinish=true;const beforeFinish=reloade
 const callsBefore=server.finishCalls;reloaded.run('render()');await flush();check(server.finishCalls===callsBefore,'Repeated render does not resubmit completed attempt');
 server.failFinish=false;await click(reloaded,'partyRetryFinish');check(reloaded.el('partyRoomTitle').textContent==='You have completed!','Retry reaches waiting for reveal');check(reloaded.el('partyRoomMessage').textContent==="Let's wait for the host to announce the winner of an AED 100 Amazing gift voucher. All the best!",'Exact completion message and prize shown');check(reloaded.el('partyRoomResults').hidden,'Results hidden after finish');
 await click(reloaded,'scoreboardButton');check(!reloaded.el('partyScoresContent').querySelector('table'),'Direct scoreboard cannot reveal scores early');
-await scheduler.advance(2000);solve(two);await flush();check(two.el('partyRoomResults').hidden,'Second player also waits');await click(host,'partyHostReveal');await scheduler.advance(2100);check(!reloaded.el('partyRoomResults').hidden&&!two.el('partyRoomResults').hidden,'Reveal broadcasts shared scoreboard');check(reloaded.el('partyRoomResults').textContent.includes('Pradeep')&&reloaded.el('partyRoomResults').textContent.includes('Guest'),'Both participant names visible');check(reloaded.el('partyRoomResults').querySelector('.party-winner').textContent.includes('Pradeep'),'Fastest finisher is winner despite partial score');
+await scheduler.advance(2000);solve(two);await flush();check(two.el('partyRoomResults').hidden,'Second player also waits');await click(host,'partyHostReveal');await scheduler.advance(2100);check(!reloaded.el('partyRoomResults').hidden&&!two.el('partyRoomResults').hidden,'Reveal broadcasts shared scoreboard');check(reloaded.el('partyRoomResults').textContent.includes('Pradeep')&&reloaded.el('partyRoomResults').textContent.includes('Guest'),'Both participant names visible');check(reloaded.el('partyRoomResults').querySelector('.party-winner').textContent.includes('Guest'),'Slower 20 correct answers win over faster 16 correct answers');
 host.el('partyHostGame').value='words';await submit(host,'partyCreateForm');const raceCode=host.el('partyHostCode').textContent;
 const raceOne=newApp({scheduler,server}),raceTwo=newApp({scheduler,server});await joinPlayer(raceOne,raceCode,'Race finisher');await joinPlayer(raceTwo,raceCode,'Race viewer');await click(host,'partyHostStart');await scheduler.advance(5200);
 const staleFinish={};server.holds.push(staleFinish);raceOne.emit('online');await flush();check(typeof staleFinish.resolve==='function','Captured pre-finish delayed poll');solve(raceOne);await flush();check(raceOne.el('partyRoomTitle').textContent==='You have completed!','Fresh completion applied ahead of delayed poll');staleFinish.resolve();await flush();check(!raceOne.live.canInteract('words')&&raceOne.el('partyRoomTitle').textContent==='You have completed!','Stale unfinished poll cannot reopen submitted game');
@@ -80,6 +108,28 @@ host.el('partyHostGame').value='words';await submit(host,'partyCreateForm');cons
 const roomButton=code=>host.el('partyHostGames').children.find(button=>button.children[0].textContent===code);
 const delayedSelect={code:selectA};server.hostViewHolds.push(delayedSelect);roomButton(selectA).dispatch('click');await flush();check(host.el('partyHostStart').disabled&&host.el('partyHostReveal').disabled,'Room selection disables Start and Reveal until loaded');await click(host,'partyHostStart');check(server.rooms.get(selectA).status==='waiting'&&server.rooms.get(selectB).status==='waiting','Start cannot accidentally act on previous room during selection');roomButton(selectB).dispatch('click');await flush();delayedSelect.resolve();await flush();check(host.el('partyHostCode').textContent===selectB,'Late old selection cannot replace most recently selected room');await click(host,'partyHostStart');check(server.rooms.get(selectB).status==='running'&&server.rooms.get(selectA).status==='waiting','Start affects only most recently selected room');
 roomButton(selectA).dispatch('click');await flush();await click(host,'partyHostClose');const delayedRefresh={code:selectA};server.hostViewHolds.push(delayedRefresh);await click(host,'partyHostLaunch');check(typeof delayedRefresh.resolve==='function','Captured old-room dashboard refresh');roomButton(selectB).dispatch('click');await flush();delayedRefresh.resolve();await flush();check(host.el('partyHostCode').textContent===selectB&&host.el('partyHostStart').disabled,'Late refresh cannot switch selected room or enable wrong Start control');await scheduler.advance(5200);await click(host,'partyHostReveal');check(server.rooms.get(selectB).status==='revealed'&&server.rooms.get(selectA).status==='waiting','Reveal affects selected started room after delayed refresh');
+// Exercise the actual reveal UI with equal scores and unfinished participants
+// in both games. The mock API preserves arrival order, just as Firestore may.
+for(const game of ['words','jigsaw']){
+ host.el('partyHostGame').value=game;await submit(host,'partyCreateForm');const rankCode=host.el('partyHostCode').textContent;
+ const participants=Array.from({length:4},()=>newApp({scheduler,server}));
+ const names=['Quick partial','Full slower','Full faster','Still playing'];
+ for(let i=0;i<participants.length;i++)await joinPlayer(participants[i],rankCode,names[i]);
+ await click(host,'partyHostStart');await scheduler.advance(5200);
+ const maximum=game==='words'?20:120;
+ prepareScore(participants[3],game,maximum-1);await flush();
+ finishScore(participants[0],game,maximum-4);await flush();
+ await scheduler.advance(1000);finishScore(participants[2],game,maximum);await flush();
+ await scheduler.advance(1000);finishScore(participants[1],game,maximum);await flush();
+ check(participants.slice(0,3).every(player=>player.el('partyRoomResults').hidden),game+' keeps all completed results hidden until host reveal');
+ await click(host,'partyHostReveal');await scheduler.advance(2100);
+ checkRevealedRanking(host.el('partyHostPlayers'),game+' host results');
+ for(const player of [participants[0],participants[2],participants[3]]){
+  checkRevealedRanking(player.el('partyRoomResults'),game+' participant revealed results');
+  await click(player,'scoreboardButton');
+  checkRevealedRanking(player.el('partyScoresContent'),game+' direct party scoreboard');
+ }
+}
 const restoringAuth={hold:true,restored:true};
 const restoring=newApp({scheduler,server,auth:restoringAuth});
 await click(restoring,'partyHostLaunch');
